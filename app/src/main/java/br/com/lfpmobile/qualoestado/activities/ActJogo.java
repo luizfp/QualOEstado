@@ -25,7 +25,6 @@ public class ActJogo extends AppCompatActivity {
     // 26 e não 27 pois a lista começa em 0;
     private static final int QTD_ESTADOS_LISTA = 26;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
