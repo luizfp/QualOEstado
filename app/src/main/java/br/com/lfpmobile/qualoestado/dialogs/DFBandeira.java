@@ -1,10 +1,13 @@
 package br.com.lfpmobile.qualoestado.dialogs;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 
 import br.com.lfpmobile.qualoestado.R;
@@ -29,6 +32,15 @@ public class DFBandeira extends SupportBlurDialogFragment {
         Bundle bundle = new Bundle();
         bundle.putString(NOMEIMGBANDEIRA, descricao);
         dialog.setArguments(bundle);
+        return dialog;
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        // request a window without the title
+        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         return dialog;
     }
 

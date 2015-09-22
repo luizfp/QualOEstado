@@ -17,8 +17,4 @@ public class StringUtils {
         s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
         return s;
     }
-
-    public static String removeWhitespaces(String s) {
-        return s.replaceAll(" ", "");
-    }
 }

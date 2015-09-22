@@ -22,10 +22,8 @@ public class Gerenciador {
 	}
 
 	public boolean confirmaJogada(String jogadaUsuario, String nomeEstado) {
-		jogadaUsuario = StringUtils.removeWhitespaces(jogadaUsuario);
-		jogadaUsuario = StringUtils.stripAccents(jogadaUsuario).toLowerCase();
-		nomeEstado = StringUtils.removeWhitespaces(nomeEstado);
-		nomeEstado = StringUtils.stripAccents(nomeEstado).toLowerCase();
+		jogadaUsuario = StringUtils.stripAccents(jogadaUsuario).toLowerCase().trim();
+		nomeEstado = StringUtils.stripAccents(nomeEstado).toLowerCase().trim();
 
 		return jogadaUsuario.equals(nomeEstado);
 	}

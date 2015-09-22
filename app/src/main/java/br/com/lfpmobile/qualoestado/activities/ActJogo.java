@@ -3,11 +3,14 @@ package br.com.lfpmobile.qualoestado.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import br.com.lfpmobile.qualoestado.R;
@@ -36,6 +39,19 @@ public class ActJogo extends AppCompatActivity {
 
         edtResposta = (EditText)findViewById(R.id.edtResposta);
         imgEstado = (ImageView)findViewById(R.id.imgEstado);
+
+        edtResposta.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_GO) {
+                    confirmarResposta();
+                    handled = true;
+                }
+                return handled;
+            }
+        });
+
         gerenciador = new Gerenciador();
         gerenciador.buscarEstados(this);
         posicaoLista = 0;
@@ -56,6 +72,10 @@ public class ActJogo extends AppCompatActivity {
     }
 
     public void confirmarResposta(View view) {
+       confirmarResposta();
+    }
+
+    private void confirmarResposta() {
         String resposta = edtResposta.getText().toString().trim();
         if (resposta.isEmpty())
             Toast.makeText(this, "Campo de resposta vazio", Toast.LENGTH_SHORT).show();
@@ -69,6 +89,7 @@ public class ActJogo extends AppCompatActivity {
 
     public void pularEstado(View view) {
         setMapaOnScreen();
+        edtResposta.setText("");
     }
 
     public void getDicaDescricao(View view) {
