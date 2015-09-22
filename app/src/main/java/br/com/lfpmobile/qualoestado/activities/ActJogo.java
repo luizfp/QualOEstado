@@ -2,6 +2,7 @@ package br.com.lfpmobile.qualoestado.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import br.com.lfpmobile.qualoestado.R;
+import br.com.lfpmobile.qualoestado.dialogs.DFBandeira;
+import br.com.lfpmobile.qualoestado.dialogs.DFDescricao;
+import br.com.lfpmobile.qualoestado.dialogs.DFLetra;
 import br.com.lfpmobile.qualoestado.dominio.Estado;
 import br.com.lfpmobile.qualoestado.dominio.Gerenciador;
 import br.com.lfpmobile.qualoestado.util.DrawableUtils;
@@ -55,7 +59,7 @@ public class ActJogo extends AppCompatActivity {
         String resposta = edtResposta.getText().toString().trim();
         if (resposta.isEmpty())
             Toast.makeText(this, "Campo de resposta vazio", Toast.LENGTH_SHORT).show();
-        else if (resposta.equals(estado.getNome())) {
+        else if (gerenciador.confirmaJogada(resposta, estado.getNome())) {
             Toast.makeText(this,"Resposta correta!", Toast.LENGTH_SHORT).show();
             edtResposta.setText("");
             setMapaOnScreen();
@@ -65,6 +69,21 @@ public class ActJogo extends AppCompatActivity {
 
     public void pularEstado(View view) {
         setMapaOnScreen();
+    }
+
+    public void getDicaDescricao(View view) {
+        DFDescricao dfDescricao = DFDescricao.newInstance(estado.getDescricao());
+        dfDescricao.show(getSupportFragmentManager(), "TAG");
+    }
+
+    public void getDicaBandeira(View view) {
+        DFBandeira dfBandeira = DFBandeira.newInstance(estado.getNomeImgBandeira());
+        dfBandeira.show(getSupportFragmentManager(), "TAG");
+    }
+
+    public void getDicaLetra(View view) {
+        DFLetra dfLetra = DFLetra.newInstance(estado.getNome());
+        dfLetra.show(getSupportFragmentManager(), "TAG");
     }
 
     @Override

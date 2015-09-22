@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.List;
 
 import br.com.lfpmobile.qualoestado.database.RepositorioEstado;
+import br.com.lfpmobile.qualoestado.util.StringUtils;
 
 public class Gerenciador {
 
@@ -18,6 +19,15 @@ public class Gerenciador {
 	public void buscarEstados(Context context) {
 		RepositorioEstado repositorioEstado = new RepositorioEstado(context);
 		listaEstados = repositorioEstado.getEstados();
+	}
+
+	public boolean confirmaJogada(String jogadaUsuario, String nomeEstado) {
+		jogadaUsuario = StringUtils.removeWhitespaces(jogadaUsuario);
+		jogadaUsuario = StringUtils.stripAccents(jogadaUsuario).toLowerCase();
+		nomeEstado = StringUtils.removeWhitespaces(nomeEstado);
+		nomeEstado = StringUtils.stripAccents(nomeEstado).toLowerCase();
+
+		return jogadaUsuario.equals(nomeEstado);
 	}
 
 	public Jogador getJogador() {

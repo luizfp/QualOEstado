@@ -19,6 +19,42 @@
         android:layout_marginBottom="20dp"
         android:layout_weight="1" />
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:onClick="getDicaDescricao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgBtnDescricaoEstado"
+            android:layout_weight="1"
+            android:src="@drawable/ic_info"
+            android:background="@drawable/button_background_selector" />
+
+        <ImageButton
+            android:onClick="getDicaBandeira"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgBtnBandeiraEstado"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_bandeira"
+            android:background="@drawable/button_background_selector" />
+
+        <ImageButton
+            android:onClick="getDicaLetra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgBtnLetraEstado"
+            android:layout_weight="1"
+            android:src="@drawable/ic_letras"
+            android:background="@drawable/button_background_selector" />
+
+    </LinearLayout>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

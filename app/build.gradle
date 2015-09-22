@@ -23,4 +23,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
+    compile 'fr.tvbarthel.blurdialogfragment:lib:2.1.4'
 }
