@@ -1,8 +1,7 @@
 package br.com.lfpmobile.qualoestado.dominio;
 
 public class Jogador {
-	
-	private String nome;
+
 	private int pontuacao;
 	private int numErros;
 	private int numAcertor;
@@ -11,19 +10,10 @@ public class Jogador {
 		
 	}
 	
-	public Jogador(String nome, int pontuacao, int numErros, int numAcertor) {
-		this.nome = nome;
+	public Jogador(int pontuacao, int numErros, int numAcertor) {
 		this.pontuacao = pontuacao;
 		this.numErros = numErros;
 		this.numAcertor = numAcertor;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public int getPontuacao() {

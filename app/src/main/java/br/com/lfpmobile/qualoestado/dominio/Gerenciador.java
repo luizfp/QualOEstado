@@ -10,16 +10,36 @@ import br.com.lfpmobile.qualoestado.util.StringUtils;
 public class Gerenciador {
 
 	private Jogador jogador;
-	private Dica dica;
+	private DicaBandeira dicaBandeira;
+    private DicaDescricao dicaDescricao;
+    private DicaLetra dicaLetra;
 	private List<Estado> listaEstados;
 	
 	public Gerenciador() {
 	}
 
-	public void buscarEstados(Context context) {
-		RepositorioEstado repositorioEstado = new RepositorioEstado(context);
-		listaEstados = repositorioEstado.getEstados();
-	}
+    public void iniciarJogo(Context context) {
+        // Criar Jogador
+        buscarEstados(context);
+        criarDicas();
+    }
+
+    private void buscarEstados(Context context) {
+        RepositorioEstado repositorioEstado = new RepositorioEstado(context);
+        listaEstados = repositorioEstado.getEstados();
+    }
+
+    private void criarDicas() {
+        dicaBandeira = new DicaBandeira(listaEstados.get(0), false);
+        dicaDescricao = new DicaDescricao(listaEstados.get(0), false);
+        dicaLetra = new DicaLetra(listaEstados.get(0), false);
+    }
+
+    public void recriarDicas(Estado estado) {
+        dicaBandeira.setEstado(estado);
+        dicaDescricao.setEstado(estado);
+        dicaLetra.setEstado(estado);
+    }
 
 	public boolean confirmaJogada(String jogadaUsuario, String nomeEstado) {
 		jogadaUsuario = StringUtils.stripAccents(jogadaUsuario).toLowerCase().trim();
@@ -34,14 +54,6 @@ public class Gerenciador {
 
 	public void setJogador(Jogador jogador) {
 		this.jogador = jogador;
-	}
-
-	public Dica getDica() {
-		return dica;
-	}
-
-	public void setDica(Dica dica) {
-		this.dica = dica;
 	}
 
 	public List<Estado> getListaEstados() {

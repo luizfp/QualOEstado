@@ -53,7 +53,7 @@ public class ActJogo extends AppCompatActivity {
         });
 
         gerenciador = new Gerenciador();
-        gerenciador.buscarEstados(this);
+        gerenciador.iniciarJogo(this);
         posicaoLista = 0;
         setMapaOnScreen();
     }
@@ -65,6 +65,7 @@ public class ActJogo extends AppCompatActivity {
             posicaoLista = 0;
         }
         estado = gerenciador.getListaEstados().get(posicaoLista);
+        gerenciador.recriarDicas(estado);
         String nomeImgMapa = estado.getNomeImgMapa();
         int resId = DrawableUtils.getImageIdByName(nomeImgMapa, this);
         imgEstado.setImageResource(resId);
@@ -93,6 +94,7 @@ public class ActJogo extends AppCompatActivity {
     }
 
     public void getDicaDescricao(View view) {
+        //TODO passar os objetos dica para os DF.
         DFDescricao dfDescricao = DFDescricao.newInstance(estado.getDescricao());
         dfDescricao.show(getSupportFragmentManager(), "TAG");
     }

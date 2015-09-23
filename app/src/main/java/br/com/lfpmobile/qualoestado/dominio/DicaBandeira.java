@@ -1,21 +1,18 @@
 package br.com.lfpmobile.qualoestado.dominio;
 
-public class DicaBandeira extends Dica {
+import br.com.lfpmobile.qualoestado.Constants;
 
-	private String bandeiraImagePath;
+public class DicaBandeira extends Dica {
 	
 	public DicaBandeira() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
-	public DicaBandeira(int custoEmPontos, Estado estado) {
-		super(custoEmPontos, estado);
-		// TODO Auto-generated constructor stub
-	}
-	public String getBandeiraImagePath() {
-		return bandeiraImagePath;
-	}
-	public void setBandeiraImagePath(String bandeiraImagePath) {
-		this.bandeiraImagePath = bandeiraImagePath;
-	}
+
+    public DicaBandeira(Estado estado, boolean jaComprada) {
+        super(estado, jaComprada);
+    }
+
+    @Override
+    public int getCustoEmPontos() {
+        return Constants.CUSTO_DICA_BANDEIRA;
+    }
 }

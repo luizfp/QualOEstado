@@ -2,25 +2,19 @@ package br.com.lfpmobile.qualoestado.dominio;
 
 
 public abstract class Dica {
-	
-	private int custoEmPontos;
+
 	private Estado estado;
+	private boolean jaComprada;
 
 	public Dica() {
 	}
 	
-	public Dica(int custoEmPontos, Estado estado) {
-		this.custoEmPontos = custoEmPontos;
+	public Dica(Estado estado, boolean jaComprada) {
 		this.estado = estado;
+		this.jaComprada = jaComprada;
 	}
 
-	public int getCustoEmPontos() {
-		return custoEmPontos;
-	}
-
-	public void setCustoEmPontos(int custoEmPontos) {
-		this.custoEmPontos = custoEmPontos;
-	}
+	public abstract int getCustoEmPontos();
 
 	public Estado getEstado() {
 		return estado;
@@ -28,6 +22,13 @@ public abstract class Dica {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
-	}	
-	
+	}
+
+	public boolean isJaComprada() {
+		return jaComprada;
+	}
+
+	public void setJaComprada(boolean jaComprada) {
+		this.jaComprada = jaComprada;
+	}
 }

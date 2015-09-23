@@ -4,4 +4,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_act_jogo">Qual é o Estado?</string>
+
+    <!-- ActMain -->
+    <string name="label_seus_pontos">Seus Pontos:</string>
+
+    <!-- ActJogo -->
+    <string name="label_hint_resposta">Nome Estado</string>
 </resources>
