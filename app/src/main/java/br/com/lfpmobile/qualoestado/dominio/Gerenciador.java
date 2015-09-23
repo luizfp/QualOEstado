@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.util.List;
 
-import br.com.lfpmobile.qualoestado.database.RepositorioEstado;
+import br.com.lfpmobile.qualoestado.database.implementation.EstadoDAOImp;
 import br.com.lfpmobile.qualoestado.util.StringUtils;
 
 public class Gerenciador {
@@ -25,8 +25,8 @@ public class Gerenciador {
     }
 
     private void buscarEstados(Context context) {
-        RepositorioEstado repositorioEstado = new RepositorioEstado(context);
-        listaEstados = repositorioEstado.getEstados();
+        EstadoDAOImp estadoDAOImp = new EstadoDAOImp(context);
+        listaEstados = estadoDAOImp.getEstados();
     }
 
     private void criarDicas() {

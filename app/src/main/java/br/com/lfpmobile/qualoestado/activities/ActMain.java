@@ -13,6 +13,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 
 import br.com.lfpmobile.qualoestado.R;
+import br.com.lfpmobile.qualoestado.database.implementation.JogadorDAOImp;
 
 public class ActMain extends AppCompatActivity {
 
@@ -54,7 +55,9 @@ public class ActMain extends AppCompatActivity {
     }
 
     public void opcoesDeJogo(View view) {
-
+        JogadorDAOImp jogadorDAOImp = new JogadorDAOImp(this);
+        jogadorDAOImp.atualizarNumAcertos(65);
+        //jogadorDAOImp.inserirNovoJogador();
     }
 
     @Override
