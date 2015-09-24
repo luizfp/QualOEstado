@@ -31,3 +31,7 @@ estado corrente.
 Sobre DicaBandeira:
 
 Mostrar na tela a imagem da bandeira do estado corrente.
+
+
+//todo
+INICALIZAR COM 0 OS NUM DO JOGADOR NA PRIMEIRA INSERÇÃO NO BD

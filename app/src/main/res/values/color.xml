@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPressedButton">#14000000</color>
+    <color name="colorAzulFraco">#3498DB</color>
+
+    <!-- Basic colors -->
+    <color name="colorWhite">#fff</color>
+    <color name="colorBlack">#000</color>
+
+    <!-- Button -->
+    <color name="colorPrimaryButton">#1ABC9C</color>
+    <color name="colorSuccessButton">#2ECC71</color>
+    <color name="colorWarningButton">#F1C40F</color>
+    <color name="colorDangerButton">#E74C3C</color>
+    <color name="colorInverseButton">#34495E</color>
 </resources>

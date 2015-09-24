@@ -12,13 +12,14 @@ public class Jogador {
 	private int maiorNumPontos;
 	private int menorNumPontos;
     private String nome;
+	private boolean appJaUsado;
 	
 	public Jogador() {
 	}
 
 	public Jogador(int pontos, int numErros, int numAcertos, int numPulosResposta,
 				   int numUsosDicaBandeira, int numUsosDicaDescricao, int numUsosDicaLetra,
-				   int maiorNumPontos, int menorNumPontos, String nome) {
+				   int maiorNumPontos, int menorNumPontos, String nome, boolean appJaUsado) {
 		this.pontos = pontos;
 		this.numErros = numErros;
 		this.numAcertos = numAcertos;
@@ -29,6 +30,7 @@ public class Jogador {
 		this.maiorNumPontos = maiorNumPontos;
 		this.menorNumPontos = menorNumPontos;
         this.nome = nome;
+        this.appJaUsado = appJaUsado;
 	}
 
 	public int getPontos() {
@@ -109,5 +111,13 @@ public class Jogador {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public boolean isAppJaUsado() {
+        return appJaUsado;
+    }
+
+    public void setAppJaUsado(boolean appJaUsado) {
+        this.appJaUsado = appJaUsado;
     }
 }

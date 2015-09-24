@@ -19,7 +19,8 @@ public class ScriptSQL {
         sqlBuilder.append("NUM_USOS_DICA_DESCRICAO INTEGER, ");
         sqlBuilder.append("NUM_USOS_DICA_LETRA INTEGER, ");
         sqlBuilder.append("MAIOR_NUM_PONTOS INTEGER, ");
-        sqlBuilder.append("MENOR_NUM_PONTOS INTEGER ");
+        sqlBuilder.append("MENOR_NUM_PONTOS INTEGER, ");
+        sqlBuilder.append("APP_JA_USADO INTEGER ");
         sqlBuilder.append(");");
 
         //RETORNA CONTEÚDO DO SCRIPT

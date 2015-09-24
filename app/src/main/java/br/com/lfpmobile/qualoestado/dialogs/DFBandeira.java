@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.ImageView;
 
 import br.com.lfpmobile.qualoestado.R;
+import br.com.lfpmobile.qualoestado.dominio.DicaBandeira;
 import br.com.lfpmobile.qualoestado.util.DrawableUtils;
 import fr.tvbarthel.lib.blurdialogfragment.SupportBlurDialogFragment;
 
@@ -19,18 +20,18 @@ import fr.tvbarthel.lib.blurdialogfragment.SupportBlurDialogFragment;
  */
 public class DFBandeira extends SupportBlurDialogFragment {
 
-    private static final String NOMEIMGBANDEIRA = "NOMEIMGBANDEIRA";
-    private String nomeImgBandeira;
+    private static final String DICA_BANDEIRA = "DICABANDEIRA";
     private ImageView imgDicaBandeira;
+    private DicaBandeira dicaBandeira;
 
     public DFBandeira() {
     }
 
-    public static DFBandeira newInstance(String descricao) {
+    public static DFBandeira newInstance(DicaBandeira dicaBandeira) {
         DFBandeira dialog = new DFBandeira();
 
         Bundle bundle = new Bundle();
-        bundle.putString(NOMEIMGBANDEIRA, descricao);
+        bundle.putSerializable(DICA_BANDEIRA, dicaBandeira);
         dialog.setArguments(bundle);
         return dialog;
     }
@@ -48,7 +49,7 @@ public class DFBandeira extends SupportBlurDialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        nomeImgBandeira = getArguments().getString(NOMEIMGBANDEIRA);
+        dicaBandeira = (DicaBandeira) getArguments().getSerializable(DICA_BANDEIRA);
     }
 
     @Nullable
@@ -57,7 +58,8 @@ public class DFBandeira extends SupportBlurDialogFragment {
         View view = inflater.inflate(R.layout.dialog_dica_bandeira, container, false);
         getDialog().setTitle("Bandeira Estado");
         imgDicaBandeira = (ImageView)view.findViewById(R.id.imgDicaBandeira);
-        int resId = DrawableUtils.getImageIdByName(nomeImgBandeira, getContext());
+        int resId = DrawableUtils.getImageIdByName(dicaBandeira.getEstado().getNomeImgBandeira(),
+                getContext());
         imgDicaBandeira.setImageResource(resId);
         return view;
     }

@@ -9,6 +9,7 @@ public interface JogadorDAO {
 
     Jogador inserirNovoJogador();
     Jogador getJogador();
+    void atualizarNumPontos(int numero);
     void atualizarNumAcertos(int numero);
     void atualizarNumErros(int numero);
     void atualizarNumPulosResposta(int numero);
@@ -17,4 +18,6 @@ public interface JogadorDAO {
     void atualizarNumUsosDicaLetra(int numero);
     void atualizarMaiorNumPontos(int numero);
     void atualizarMenorNumPontos(int numero);
+    void atualizarAppJaUsado(boolean b);
+    boolean appJaUsado();
 }

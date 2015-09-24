@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="#3498DB"
+    android:background="@color/colorAzulFraco"
     tools:context=".ActMain">
 
     <LinearLayout
@@ -27,19 +27,20 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_weight="1"
-            android:textColor="#fff" />
+            android:textColor="@color/colorWhite" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="100"
+            android:text="Pontos"
             android:id="@+id/txtPontosJogadorMenu"
             android:layout_alignTop="@+id/textView"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_weight="1"
-            android:textColor="#fff" />
+            android:textColor="@color/colorWhite"
+            android:gravity="center" />
     </LinearLayout>
 
 
@@ -56,9 +57,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fbutton:shadowEnabled="true"
-            fbutton:buttonColor="#1ABC9C"
-            android:text="Novo Jogo"
-            android:textColor="#fff"
+            fbutton:buttonColor="@color/colorPrimaryButton"
+            android:text="@string/label_novo_jogo"
+            android:textColor="@color/colorWhite"
             android:id="@+id/btnNovoJogo"
             android:onClick="iniciarNovoJogo"
             android:layout_centerVertical="true"
@@ -73,9 +74,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fbutton:shadowEnabled="true"
-            fbutton:buttonColor="#1ABC9C"
-            android:text="Opções"
-            android:textColor="#fff"
+            fbutton:buttonColor="@color/colorPrimaryButton"
+            android:text="@string/label_opcoes"
+            android:textColor="@color/colorWhite"
             android:id="@+id/btnOpcoes"
             android:onClick="opcoesDeJogo"
             android:layout_below="@+id/btnNovoJogo"
@@ -92,7 +93,7 @@
         android:text="Qual é o Estado?"
         android:id="@+id/textView2"
         android:layout_marginTop="96dp"
-        android:textColor="#fff"
+        android:textColor="@color/colorWhite"
         android:textStyle="bold|italic"
         android:textSize="40dp"
         android:layout_below="@+id/linearLayout"

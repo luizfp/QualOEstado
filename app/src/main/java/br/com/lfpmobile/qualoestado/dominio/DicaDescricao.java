@@ -1,8 +1,10 @@
 package br.com.lfpmobile.qualoestado.dominio;
 
+import java.io.Serializable;
+
 import br.com.lfpmobile.qualoestado.Constants;
 
-public class DicaDescricao extends Dica{
+public class DicaDescricao extends Dica implements Serializable {
 
 	public DicaDescricao() {
 	}

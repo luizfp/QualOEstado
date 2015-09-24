@@ -3,13 +3,13 @@ package br.com.lfpmobile.qualoestado.dialogs;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import br.com.lfpmobile.qualoestado.R;
+import br.com.lfpmobile.qualoestado.dominio.DicaDescricao;
 import fr.tvbarthel.lib.blurdialogfragment.SupportBlurDialogFragment;
 
 /**
@@ -17,18 +17,18 @@ import fr.tvbarthel.lib.blurdialogfragment.SupportBlurDialogFragment;
  */
 public class DFDescricao extends SupportBlurDialogFragment {
 
-    private static final String DESCRICAO = "DESCRICAO";
-    private String descricaoEstado;
+    private static final String DICA_DESCRICAO = "DICADESCRICAO";
+    private DicaDescricao dicaDescricao;
     private TextView txtDescricaoEstado;
 
     public DFDescricao() {
     }
 
-    public static DFDescricao newInstance(String descricao) {
+    public static DFDescricao newInstance(DicaDescricao dicaDescricao) {
         DFDescricao dialog = new DFDescricao();
 
         Bundle bundle = new Bundle();
-        bundle.putString(DESCRICAO, descricao);
+        bundle.putSerializable(DICA_DESCRICAO, dicaDescricao);
         dialog.setArguments(bundle);
         return dialog;
     }
@@ -36,7 +36,7 @@ public class DFDescricao extends SupportBlurDialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        descricaoEstado = getArguments().getString(DESCRICAO);
+        dicaDescricao = (DicaDescricao) getArguments().getSerializable(DICA_DESCRICAO);
     }
 
     @Nullable
@@ -45,7 +45,7 @@ public class DFDescricao extends SupportBlurDialogFragment {
         View view = inflater.inflate(R.layout.dialog_dica_descricao, container, false);
         getDialog().setTitle("Descrição Estado");
         txtDescricaoEstado = (TextView)view.findViewById(R.id.txtDescricaoEstado);
-        txtDescricaoEstado.setText(descricaoEstado);
+        txtDescricaoEstado.setText(dicaDescricao.getEstado().getDescricao());
         txtDescricaoEstado.setMovementMethod(new ScrollingMovementMethod());
         return view;
     }

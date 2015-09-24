@@ -13,17 +13,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import br.com.lfpmobile.qualoestado.Constants;
 import br.com.lfpmobile.qualoestado.R;
+import br.com.lfpmobile.qualoestado.app.CountAnimation;
 import br.com.lfpmobile.qualoestado.dialogs.DFBandeira;
 import br.com.lfpmobile.qualoestado.dialogs.DFDescricao;
 import br.com.lfpmobile.qualoestado.dialogs.DFLetra;
 import br.com.lfpmobile.qualoestado.dominio.Estado;
 import br.com.lfpmobile.qualoestado.dominio.Gerenciador;
+import br.com.lfpmobile.qualoestado.dominio.Jogador;
 import br.com.lfpmobile.qualoestado.util.DrawableUtils;
 import br.com.lfpmobile.qualoestado.util.ListUtils;
 
 public class ActJogo extends AppCompatActivity {
 
+    private Jogador jogador;
     private EditText edtResposta;
     private ImageView imgEstado;
     private Gerenciador gerenciador;
@@ -31,6 +35,10 @@ public class ActJogo extends AppCompatActivity {
     private int posicaoLista;
     // 26 e não 27 pois a lista começa em 0;
     private static final int QTD_ESTADOS_LISTA = 26;
+    private TextView txtPontosJogadorJogo;
+    private boolean jaUsouDicaBandeira = false;
+    private boolean jaUsouDicaDescricao = false;
+    private boolean jaUsouDicaLetra = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,7 @@ public class ActJogo extends AppCompatActivity {
 
         edtResposta = (EditText)findViewById(R.id.edtResposta);
         imgEstado = (ImageView)findViewById(R.id.imgEstado);
+        txtPontosJogadorJogo = (TextView)findViewById(R.id.txtPontosJogadorJogo);
 
         edtResposta.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -52,10 +61,17 @@ public class ActJogo extends AppCompatActivity {
             }
         });
 
-        gerenciador = new Gerenciador();
-        gerenciador.iniciarJogo(this);
+        gerenciador = gerenciador.getInstance();
+        gerenciador.iniciarJogo();
+        jogador = gerenciador.getJogador();
         posicaoLista = 0;
         setMapaOnScreen();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        CountAnimation.startCountAnimation(0, jogador.getPontos(), txtPontosJogadorJogo, 2000);
     }
 
     private void setMapaOnScreen() {
@@ -77,35 +93,79 @@ public class ActJogo extends AppCompatActivity {
     }
 
     private void confirmarResposta() {
+        int novosPontos;
         String resposta = edtResposta.getText().toString().trim();
         if (resposta.isEmpty())
             Toast.makeText(this, "Campo de resposta vazio", Toast.LENGTH_SHORT).show();
         else if (gerenciador.confirmaJogada(resposta, estado.getNome())) {
+            novosPontos = jogador.getPontos() + Constants.VALOR_ACERTAR_RESPOSTA;
+            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 2000);
+            jogador.setPontos(novosPontos);
+            jogador.setNumAcertos(jogador.getNumAcertos() + 1);
+            gerenciador.acertouJogada(jogador);
             Toast.makeText(this,"Resposta correta!", Toast.LENGTH_SHORT).show();
             edtResposta.setText("");
             setMapaOnScreen();
-        } else
+        } else {
             Toast.makeText(this,"Resposta incorreta!", Toast.LENGTH_SHORT).show();
+            novosPontos = jogador.getPontos() - Constants.CUSTO_ERRAR_RESPOSTA;
+            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 2000);
+            jogador.setPontos(novosPontos);
+            jogador.setNumErros(jogador.getNumErros() + 1);
+            gerenciador.errouJogada(jogador);
+        }
     }
 
     public void pularEstado(View view) {
-        setMapaOnScreen();
+        jaUsouDicaBandeira = false;
+        jaUsouDicaDescricao = false;
+        jaUsouDicaLetra = false;
+        int novosPontos = jogador.getPontos() - Constants.CUSTO_PULAR_RESPOSTA;
+        CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 2000);
+        jogador.setPontos(novosPontos);
+        jogador.setNumPulosResposta(jogador.getNumPulosResposta() + 1);
+        gerenciador.pulouJogada(jogador);
         edtResposta.setText("");
-    }
-
-    public void getDicaDescricao(View view) {
-        //TODO passar os objetos dica para os DF.
-        DFDescricao dfDescricao = DFDescricao.newInstance(estado.getDescricao());
-        dfDescricao.show(getSupportFragmentManager(), "TAG");
+        setMapaOnScreen();
     }
 
     public void getDicaBandeira(View view) {
-        DFBandeira dfBandeira = DFBandeira.newInstance(estado.getNomeImgBandeira());
+        if (!jaUsouDicaBandeira) {
+            int novosPontos = jogador.getPontos() - gerenciador.getDicaBandeira().getCustoEmPontos();
+            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 2000);
+            jogador.setPontos(novosPontos);
+            jogador.setNumUsosDicaBandeira(jogador.getNumUsosDicaBandeira() + 1);
+            gerenciador.usouDicaBandeira(jogador);
+            jaUsouDicaBandeira = true;
+        }
+        DFBandeira dfBandeira = DFBandeira.newInstance(gerenciador.getDicaBandeira());
         dfBandeira.show(getSupportFragmentManager(), "TAG");
+
+    }
+
+    public void getDicaDescricao(View view) {
+        if (!jaUsouDicaDescricao) {
+            int novosPontos = jogador.getPontos() - gerenciador.getDicaDescricao().getCustoEmPontos();
+            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 2000);
+            jogador.setPontos(novosPontos);
+            jogador.setNumUsosDicaDescricao(jogador.getNumUsosDicaDescricao() + 1);
+            gerenciador.usouDicaDescricao(jogador);
+            jaUsouDicaDescricao = true;
+        }
+        DFDescricao dfDescricao = DFDescricao.newInstance(gerenciador.getDicaDescricao());
+        dfDescricao.show(getSupportFragmentManager(), "TAG");
     }
 
     public void getDicaLetra(View view) {
-        DFLetra dfLetra = DFLetra.newInstance(estado.getNome());
+        if (!jaUsouDicaLetra) {
+            int novosPontos = jogador.getPontos() - gerenciador.getDicaLetra().getCustoEmPontos();
+            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 2000);
+            jogador.setPontos(novosPontos);
+            jogador.setNumUsosDicaLetra(jogador.getNumUsosDicaLetra() + 1);
+            gerenciador.usouDicaLetra(jogador);
+            jaUsouDicaLetra = true;
+        }
+        DFLetra dfLetra = DFLetra.newInstance(gerenciador.getDicaLetra());
         dfLetra.show(getSupportFragmentManager(), "TAG");
     }
 

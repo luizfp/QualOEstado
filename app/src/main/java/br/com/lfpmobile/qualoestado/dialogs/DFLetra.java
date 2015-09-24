@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.TextView;
 
 import br.com.lfpmobile.qualoestado.R;
+import br.com.lfpmobile.qualoestado.dominio.DicaLetra;
 import br.com.lfpmobile.qualoestado.util.StringUtils;
 import fr.tvbarthel.lib.blurdialogfragment.SupportBlurDialogFragment;
 
@@ -21,17 +22,17 @@ public class DFLetra extends SupportBlurDialogFragment {
 
     private TextView txtLetraInicialNomeEstao;
     private TextView txtQtdLetrasNomeEstado;
-    private static final String NOMEESTADO = "NOMEESTADO";
-    private String nomeEstado;
+    private static final String DICA_LETRA = "DICALETRA";
+    private DicaLetra dicaLetra;
 
     public DFLetra() {
     }
 
-    public static DFLetra newInstance(String nomeEstado) {
+    public static DFLetra newInstance(DicaLetra dicaLetra) {
         DFLetra dialog = new DFLetra();
 
         Bundle bundle = new Bundle();
-        bundle.putString(NOMEESTADO, nomeEstado);
+        bundle.putSerializable(DICA_LETRA, dicaLetra);
         dialog.setArguments(bundle);
         return dialog;
     }
@@ -48,7 +49,7 @@ public class DFLetra extends SupportBlurDialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        nomeEstado = getArguments().getString(NOMEESTADO);
+        dicaLetra = (DicaLetra) getArguments().getSerializable(DICA_LETRA);
     }
 
     @Nullable
@@ -58,6 +59,7 @@ public class DFLetra extends SupportBlurDialogFragment {
         txtLetraInicialNomeEstao = (TextView)view.findViewById(R.id.txtLetraInicialNomeEstado);
         txtQtdLetrasNomeEstado = (TextView)view.findViewById(R.id.txtQtdLetrasNomeEstado);
 
+        String nomeEstado = dicaLetra.getEstado().getNome();
         String qtdLetrasNome = String.valueOf(StringUtils.getQtdLetrasSemEspaco(nomeEstado));
         txtQtdLetrasNomeEstado.setText("Quantidade de letras: " + qtdLetrasNome);
 
