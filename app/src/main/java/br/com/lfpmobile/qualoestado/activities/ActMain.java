@@ -56,7 +56,7 @@ public class ActMain extends AppCompatActivity {
 
     public void opcoesDeJogo(View view) {
         JogadorDAOImp jogadorDAOImp = new JogadorDAOImp(this);
-        jogadorDAOImp.atualizarNumAcertos(65);
+        jogadorDAOImp.atualizarNumAcertos(200);
         //jogadorDAOImp.inserirNovoJogador();
     }
 
