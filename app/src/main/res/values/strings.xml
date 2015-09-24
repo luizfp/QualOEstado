@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Qual o Estado</string>
+    <string name="app_name">Qual é o Estado?</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -14,4 +14,8 @@
     <string name="label_hint_resposta">Nome Estado</string>
     <string name="label_pular">Pular</string>
     <string name="label_ok">OK</string>
+
+    <!-- ActEstatistica -->
+    <string name="title_activity_act_estatistica">Minhas Estatísticas</string>
+    <string name="label_estatisticas">Estatísticas</string>
 </resources>

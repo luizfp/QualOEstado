@@ -1,5 +1,6 @@
 package br.com.lfpmobile.qualoestado.activities;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -39,6 +40,7 @@ public class ActJogo extends AppCompatActivity {
     private boolean jaUsouDicaBandeira = false;
     private boolean jaUsouDicaDescricao = false;
     private boolean jaUsouDicaLetra = false;
+    private MediaPlayer mpButtonClick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,9 @@ public class ActJogo extends AppCompatActivity {
         edtResposta = (EditText)findViewById(R.id.edtResposta);
         imgEstado = (ImageView)findViewById(R.id.imgEstado);
         txtPontosJogadorJogo = (TextView)findViewById(R.id.txtPontosJogadorJogo);
+
+        //set up button sound
+        mpButtonClick = MediaPlayer.create(this, R.raw.button_click);
 
         edtResposta.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -89,6 +94,7 @@ public class ActJogo extends AppCompatActivity {
     }
 
     public void confirmarResposta(View view) {
+        mpButtonClick.start();
        confirmarResposta();
     }
 
@@ -117,6 +123,7 @@ public class ActJogo extends AppCompatActivity {
     }
 
     public void pularEstado(View view) {
+        mpButtonClick.start();
         jaUsouDicaBandeira = false;
         jaUsouDicaDescricao = false;
         jaUsouDicaLetra = false;

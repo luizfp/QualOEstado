@@ -4,10 +4,6 @@
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:background="@color/colorAzulFraco"
     tools:context=".ActMain">
 
@@ -15,6 +11,10 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         android:id="@+id/linearLayout">
 
         <TextView
@@ -44,17 +44,49 @@
     </LinearLayout>
 
 
+    <TextView
+        android:background="#2980B9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Qual é o Estado?"
+        android:id="@+id/textView2"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold|italic"
+        android:textSize="40dp"
+        android:gravity="center"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignLeft="@+id/linearLayout"
+        android:layout_alignStart="@+id/linearLayout" />
+
+    <ImageView
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/mapa_brasil"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="false"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="93dp"
+        android:id="@+id/linearLayout2"
         android:layout_below="@+id/textView2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="89dp">
 
         <info.hoang8f.widget.FButton
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             fbutton:shadowEnabled="true"
             fbutton:buttonColor="@color/colorPrimaryButton"
@@ -66,12 +98,28 @@
             android:layout_alignLeft="@+id/btnOpcoes"
             android:layout_alignStart="@+id/btnOpcoes"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp" />
 
         <info.hoang8f.widget.FButton
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            fbutton:shadowEnabled="true"
+            fbutton:buttonColor="@color/colorPrimaryButton"
+            android:text="@string/label_estatisticas"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/btnEstatisticas"
+            android:onClick="minhasEstatisticas"
+            android:layout_below="@+id/btnOpcoes"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" />
+
+        <info.hoang8f.widget.FButton
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             fbutton:shadowEnabled="true"
             fbutton:buttonColor="@color/colorPrimaryButton"
@@ -84,20 +132,7 @@
             android:layout_gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp" />
-    </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Qual é o Estado?"
-        android:id="@+id/textView2"
-        android:layout_marginTop="96dp"
-        android:textColor="@color/colorWhite"
-        android:textStyle="bold|italic"
-        android:textSize="40dp"
-        android:layout_below="@+id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:gravity="center" />
+    </LinearLayout>
 
 </RelativeLayout>

@@ -3,11 +3,14 @@ package br.com.lfpmobile.qualoestado.activities;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SoundEffectConstants;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import br.com.lfpmobile.qualoestado.R;
@@ -15,12 +18,15 @@ import br.com.lfpmobile.qualoestado.app.CountAnimation;
 import br.com.lfpmobile.qualoestado.database.DBHelper;
 import br.com.lfpmobile.qualoestado.dominio.Gerenciador;
 import br.com.lfpmobile.qualoestado.dominio.Jogador;
+import info.hoang8f.widget.FButton;
 
 public class ActMain extends AppCompatActivity {
 
     private TextView txtPontosJogadorMenu;
     private Gerenciador gerenciador;
     private Jogador jogador;
+    private FButton btnNovoJogo, btnEstatisticas, btnOpcoes;
+    private MediaPlayer mpButtonClick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,12 @@ public class ActMain extends AppCompatActivity {
         }
 
         txtPontosJogadorMenu = (TextView)findViewById(R.id.txtPontosJogadorMenu);
+        btnNovoJogo = (FButton)findViewById(R.id.btnNovoJogo);
+        btnEstatisticas = (FButton)findViewById(R.id.btnEstatisticas);
+        btnOpcoes = (FButton)findViewById(R.id.btnEstatisticas);
+
+        //set up the button sound
+        mpButtonClick = MediaPlayer.create(this, R.raw.button_click);
     }
 
     @Override
@@ -48,12 +60,19 @@ public class ActMain extends AppCompatActivity {
     }
 
     public void iniciarNovoJogo(View view) {
+        mpButtonClick.start();
         Intent intent = new Intent(this, ActJogo.class);
         startActivity(intent);
     }
 
+    public void minhasEstatisticas(View view) {
+        mpButtonClick.start();
+        Intent intent = new Intent(this, ActEstatistica.class);
+        startActivity(intent);
+    }
+
     public void opcoesDeJogo(View view) {
-        //jogadorDAOImp.inserirNovoJogador();
+        mpButtonClick.start();
     }
 
     @Override

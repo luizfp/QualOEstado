@@ -10,7 +10,7 @@
         <activity
             android:name=".activities.ActMain"
             android:label="@string/app_name"
-            android:theme="@style/NoActionBar">
+            android:theme="@style/NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,6 +20,10 @@
         <activity
             android:name=".activities.ActJogo"
             android:label="@string/title_activity_act_jogo" >
+        </activity>
+        <activity
+            android:name=".activities.ActEstatistica"
+            android:label="@string/title_activity_act_estatistica">
         </activity>
     </application>
 
