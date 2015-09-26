@@ -4,7 +4,7 @@ qual é.
 
 Screenshots:
 
-<img src="https://raw.githubusercontent.com/luizfp/QualOEstado/master/art/layout-2015-09-26-161147.png" width="280">
+<img src="https://raw.githubusercontent.com/luizfp/QualOEstado/master/art/layout-2015-09-26-161147.png" width="300">
 
-<img src="https://raw.githubusercontent.com/luizfp/QualOEstado/master/art/layout-2015-09-26-161232.png" width="280">
+<img src="https://raw.githubusercontent.com/luizfp/QualOEstado/master/art/layout-2015-09-26-161232.png" width="300">
 
