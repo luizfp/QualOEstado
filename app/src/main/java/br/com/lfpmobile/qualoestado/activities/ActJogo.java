@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.davemorrissey.labs.subscaleview.ImageSource;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -36,7 +38,7 @@ public class ActJogo extends AppCompatActivity {
 
     private Jogador jogador;
     private EditText edtResposta;
-    private ImageView imgEstado;
+    private SubsamplingScaleImageView imgEstado;
     private Gerenciador gerenciador;
     private Estado estado;
     private int posicaoLista;
@@ -55,7 +57,7 @@ public class ActJogo extends AppCompatActivity {
         setContentView(R.layout.act_jogo);
 
         edtResposta = (EditText)findViewById(R.id.edtResposta);
-        imgEstado = (ImageView)findViewById(R.id.imgEstado);
+        imgEstado = (SubsamplingScaleImageView)findViewById(R.id.imgEstado);
         txtPontosJogadorJogo = (TextView)findViewById(R.id.txtPontosJogadorJogo);
 
         //set up button sound
@@ -127,7 +129,8 @@ public class ActJogo extends AppCompatActivity {
         gerenciador.recriarDicas(estado);
         String nomeImgMapa = estado.getNomeImgMapa();
         int resId = DrawableUtils.getImageIdByName(nomeImgMapa, this);
-        imgEstado.setImageResource(resId);
+        //imgEstado.setImageResource(resId);
+        imgEstado.setImage(ImageSource.resource(resId));
         posicaoLista++;
     }
 

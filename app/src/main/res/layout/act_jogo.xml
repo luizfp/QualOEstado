@@ -5,21 +5,21 @@
     android:layout_height="match_parent"
     tools:context="br.com.lfpmobile.qualoestado.activities.ActJogo"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:weightSum="1">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:id="@+id/rlMapaPontos"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp" >
 
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
             android:id="@+id/imgEstado"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:src="@drawable/mapa_santa_catarina"
@@ -40,79 +40,93 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:id="@+id/llAcoesJogo"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin" >
 
-        <ImageButton
-            android:onClick="getDicaBandeira"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/imgBtnBandeiraEstado"
-            android:layout_weight="1"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_bandeira"
-            android:background="@drawable/button_background_selector" />
+            android:id="@+id/llDicasJogo">
 
-        <ImageButton
-            android:onClick="getDicaDescricao"
-            android:layout_width="wrap_content"
+            <ImageButton
+                android:onClick="getDicaBandeira"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imgBtnBandeiraEstado"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_bandeira"
+                android:background="@drawable/button_background_selector" />
+
+            <ImageButton
+                android:onClick="getDicaDescricao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imgBtnDescricaoEstado"
+                android:layout_weight="1"
+                android:src="@drawable/ic_info"
+                android:background="@drawable/button_background_selector" />
+
+            <ImageButton
+                android:onClick="getDicaLetra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imgBtnLetraEstado"
+                android:layout_weight="1"
+                android:src="@drawable/ic_letras"
+                android:background="@drawable/button_background_selector" />
+
+        </LinearLayout>
+
+        <EditText
+            android:layout_marginTop="15dp"
+            android:hint="@string/label_hint_resposta"
+            android:imeOptions="actionGo"
+            android:inputType="text"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/imgBtnDescricaoEstado"
-            android:layout_weight="1"
-            android:src="@drawable/ic_info"
-            android:background="@drawable/button_background_selector" />
+            android:id="@+id/edtResposta"
+            android:layout_marginBottom="10dp" />
 
-        <ImageButton
-            android:onClick="getDicaLetra"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/imgBtnLetraEstado"
-            android:layout_weight="1"
-            android:src="@drawable/ic_letras"
-            android:background="@drawable/button_background_selector" />
+            android:gravity="center_vertical"
+            android:id="@+id/llButtonsJogo">
 
+            <info.hoang8f.widget.FButton
+                android:onClick="pularEstado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fbutton:shadowEnabled="true"
+                fbutton:buttonColor="@color/colorWarningButton"
+                android:text="@string/label_pular"
+                android:textColor="@color/colorWhite"
+                android:id="@+id/pularEstado"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp" />
+
+            <info.hoang8f.widget.FButton
+                android:onClick="confirmarResposta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fbutton:shadowEnabled="true"
+                fbutton:buttonColor="@color/colorSuccessButton"
+                android:text="@string/label_ok"
+                android:textColor="@color/colorWhite"
+                android:id="@+id/btnConfirmarResposta"
+                android:layout_weight="1" />
+
+        </LinearLayout>
     </LinearLayout>
 
-    <EditText
-        android:layout_marginTop="15dp"
-        android:hint="@string/label_hint_resposta"
-        android:imeOptions="actionGo"
-        android:inputType="text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edtResposta"
-        android:layout_marginBottom="10dp" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
-
-        <info.hoang8f.widget.FButton
-            android:onClick="pularEstado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fbutton:shadowEnabled="true"
-            fbutton:buttonColor="@color/colorWarningButton"
-            android:text="@string/label_pular"
-            android:textColor="@color/colorWhite"
-            android:id="@+id/pularEstado"
-            android:layout_weight="1"
-            android:layout_marginRight="10dp" />
-
-        <info.hoang8f.widget.FButton
-            android:onClick="confirmarResposta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fbutton:shadowEnabled="true"
-            fbutton:buttonColor="@color/colorSuccessButton"
-            android:text="@string/label_ok"
-            android:textColor="@color/colorWhite"
-            android:id="@+id/btnConfirmarResposta"
-            android:layout_weight="1" />
-
-    </LinearLayout>
 </LinearLayout>
