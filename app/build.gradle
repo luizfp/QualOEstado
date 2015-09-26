@@ -25,4 +25,5 @@ dependencies {
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
     compile 'fr.tvbarthel.blurdialogfragment:lib:2.1.4'
     compile 'info.hoang8f:fbutton:1.0.5'
+    compile 'com.google.code.gson:gson:2.3.1'
 }

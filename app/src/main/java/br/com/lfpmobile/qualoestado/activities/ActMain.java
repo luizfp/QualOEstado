@@ -56,7 +56,7 @@ public class ActMain extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        CountAnimation.startCountAnimation(0, jogador.getPontos(), txtPontosJogadorMenu, 5000);
+        CountAnimation.startCountAnimation(0, jogador.getPontos(), txtPontosJogadorMenu, 2000);
     }
 
     public void iniciarNovoJogo(View view) {

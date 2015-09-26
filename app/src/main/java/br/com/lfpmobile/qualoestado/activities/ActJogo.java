@@ -1,9 +1,9 @@
 package br.com.lfpmobile.qualoestado.activities;
 
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +13,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 import br.com.lfpmobile.qualoestado.Constants;
 import br.com.lfpmobile.qualoestado.R;
@@ -41,6 +47,7 @@ public class ActJogo extends AppCompatActivity {
     private boolean jaUsouDicaDescricao = false;
     private boolean jaUsouDicaLetra = false;
     private MediaPlayer mpButtonClick;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,17 +73,48 @@ public class ActJogo extends AppCompatActivity {
             }
         });
 
-        gerenciador = gerenciador.getInstance();
-        gerenciador.iniciarJogo();
-        jogador = gerenciador.getJogador();
-        posicaoLista = 0;
-        setMapaOnScreen();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        CountAnimation.startCountAnimation(0, jogador.getPontos(), txtPontosJogadorJogo, 2000);
+        gerenciador = gerenciador.getInstance();
+        gerenciador.instanciarDAO(this);
+        sharedPreferences = getPreferences(MODE_PRIVATE);
+        if (sharedPreferences.contains("KEY_STRING")) {
+            //TODO melhor fazer depois um metodo retomarJogo no gerenciador que ja cuidara de recriar
+            // as dicas com new e todo o resto.
+            Type type = new TypeToken<List<Estado>>(){}.getType();
+            List<Estado> list = new Gson().fromJson(sharedPreferences.getString("KEY_STRING", null), type);
+            posicaoLista = sharedPreferences.getInt("KEY_INT", posicaoLista);
+            gerenciador.setListaEstados(list);
+            gerenciador.recriarDicas(gerenciador.getListaEstados().get(posicaoLista));
+            gerenciador.buscarJogador();
+            jogador = gerenciador.getJogador();
+        } else {
+            gerenciador.iniciarJogo();
+            jogador = gerenciador.getJogador();
+            posicaoLista = 0;
+        }
+        txtPontosJogadorJogo.setText(String.valueOf(jogador.getPontos()));
+        setMapaOnScreen();
+
+        // Assim caso a pessoa saia do app e torne a jogar novamente, já não encontre e use a mesma
+        // lista salva de estados.
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear().commit();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sharedPreferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("KEY_STRING", new Gson().toJson(gerenciador.getListaEstados()));
+        // tem que passar posicaoLista - 1 pois a variavel ja foi incremetada para o indice do
+        // próximo mapa no método setMapaOnScreen
+        editor.putInt("KEY_INT", posicaoLista - 1);
+        editor.commit();
     }
 
     private void setMapaOnScreen() {
@@ -104,8 +142,11 @@ public class ActJogo extends AppCompatActivity {
         if (resposta.isEmpty())
             Toast.makeText(this, "Campo de resposta vazio", Toast.LENGTH_SHORT).show();
         else if (gerenciador.confirmaJogada(resposta, estado.getNome())) {
+            jaUsouDicaBandeira = false;
+            jaUsouDicaDescricao = false;
+            jaUsouDicaLetra = false;
             novosPontos = jogador.getPontos() + Constants.VALOR_ACERTAR_RESPOSTA;
-            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 2000);
+            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 1000);
             jogador.setPontos(novosPontos);
             jogador.setNumAcertos(jogador.getNumAcertos() + 1);
             gerenciador.acertouJogada(jogador);
@@ -115,7 +156,7 @@ public class ActJogo extends AppCompatActivity {
         } else {
             Toast.makeText(this,"Resposta incorreta!", Toast.LENGTH_SHORT).show();
             novosPontos = jogador.getPontos() - Constants.CUSTO_ERRAR_RESPOSTA;
-            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 2000);
+            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 1000);
             jogador.setPontos(novosPontos);
             jogador.setNumErros(jogador.getNumErros() + 1);
             gerenciador.errouJogada(jogador);
@@ -128,7 +169,7 @@ public class ActJogo extends AppCompatActivity {
         jaUsouDicaDescricao = false;
         jaUsouDicaLetra = false;
         int novosPontos = jogador.getPontos() - Constants.CUSTO_PULAR_RESPOSTA;
-        CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 2000);
+        CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 1000);
         jogador.setPontos(novosPontos);
         jogador.setNumPulosResposta(jogador.getNumPulosResposta() + 1);
         gerenciador.pulouJogada(jogador);
@@ -139,7 +180,7 @@ public class ActJogo extends AppCompatActivity {
     public void getDicaBandeira(View view) {
         if (!jaUsouDicaBandeira) {
             int novosPontos = jogador.getPontos() - gerenciador.getDicaBandeira().getCustoEmPontos();
-            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 2000);
+            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 1000);
             jogador.setPontos(novosPontos);
             jogador.setNumUsosDicaBandeira(jogador.getNumUsosDicaBandeira() + 1);
             gerenciador.usouDicaBandeira(jogador);
@@ -153,7 +194,7 @@ public class ActJogo extends AppCompatActivity {
     public void getDicaDescricao(View view) {
         if (!jaUsouDicaDescricao) {
             int novosPontos = jogador.getPontos() - gerenciador.getDicaDescricao().getCustoEmPontos();
-            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 2000);
+            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 1000);
             jogador.setPontos(novosPontos);
             jogador.setNumUsosDicaDescricao(jogador.getNumUsosDicaDescricao() + 1);
             gerenciador.usouDicaDescricao(jogador);

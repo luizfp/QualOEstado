@@ -56,9 +56,9 @@ public class Gerenciador {
      * @param estado
      */
     public void recriarDicas(Estado estado) {
-        dicaBandeira.setEstado(estado);
-        dicaDescricao.setEstado(estado);
-        dicaLetra.setEstado(estado);
+        dicaBandeira = new DicaBandeira(estado, false);
+        dicaDescricao = new DicaDescricao(estado, false);
+        dicaLetra = new DicaLetra(estado, false);
     }
 
 	public boolean confirmaJogada(String jogadaUsuario, String nomeEstado) {
