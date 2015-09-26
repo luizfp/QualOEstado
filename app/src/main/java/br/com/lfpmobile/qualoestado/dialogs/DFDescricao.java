@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import br.com.lfpmobile.qualoestado.R;
-import br.com.lfpmobile.qualoestado.dominio.DicaDescricao;
+import br.com.lfpmobile.qualoestado.domain.DicaDescricao;
 import fr.tvbarthel.lib.blurdialogfragment.SupportBlurDialogFragment;
 
 /**

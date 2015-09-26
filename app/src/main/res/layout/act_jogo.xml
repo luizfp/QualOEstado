@@ -22,7 +22,7 @@
             android:id="@+id/imgEstado"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/mapa_sergipe"
+            android:src="@drawable/mapa_santa_catarina"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
             android:layout_weight="1" />

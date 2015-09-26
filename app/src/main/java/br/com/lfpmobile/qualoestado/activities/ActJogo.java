@@ -26,9 +26,9 @@ import br.com.lfpmobile.qualoestado.app.CountAnimation;
 import br.com.lfpmobile.qualoestado.dialogs.DFBandeira;
 import br.com.lfpmobile.qualoestado.dialogs.DFDescricao;
 import br.com.lfpmobile.qualoestado.dialogs.DFLetra;
-import br.com.lfpmobile.qualoestado.dominio.Estado;
-import br.com.lfpmobile.qualoestado.dominio.Gerenciador;
-import br.com.lfpmobile.qualoestado.dominio.Jogador;
+import br.com.lfpmobile.qualoestado.domain.Estado;
+import br.com.lfpmobile.qualoestado.domain.Gerenciador;
+import br.com.lfpmobile.qualoestado.domain.Jogador;
 import br.com.lfpmobile.qualoestado.util.DrawableUtils;
 import br.com.lfpmobile.qualoestado.util.ListUtils;
 

@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteStatement;
 
 import java.io.File;
 
+import br.com.lfpmobile.qualoestado.database.android.AndroidDatabase;
+import br.com.lfpmobile.qualoestado.database.external.ExternalDatabase;
+
 /**
  * Created by luiz on 9/23/15.
  */
