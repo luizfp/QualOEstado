@@ -11,7 +11,7 @@
     <string name="label_opcoes">Opções</string>
 
     <!-- ActJogo -->
-    <string name="label_hint_resposta">Nome Estado</string>
+    <string name="label_hint_resposta">Nome Estado ou sigla</string>
     <string name="label_pular">Pular</string>
     <string name="label_ok">OK</string>
 

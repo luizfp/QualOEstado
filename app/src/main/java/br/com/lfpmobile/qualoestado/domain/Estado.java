@@ -7,17 +7,19 @@ public class Estado {
 	private String nomeImgBandeira;
 	private String descricao;
 	private int valorEmPontos;
+	private String sigla;
 	
 	public Estado() {
 	}
 
 	public Estado(String nome, String nomeImgMapa, String nomeImgBandeira, String descricao,
-				  int valorEmPontos) {
+				  int valorEmPontos, String sigla) {
 		this.nome = nome;
 		this.nomeImgMapa = nomeImgMapa;
 		this.nomeImgBandeira = nomeImgBandeira;
 		this.descricao = descricao;
 		this.valorEmPontos = valorEmPontos;
+		this.sigla = sigla;
 	}
 
 	public String getNome() {
@@ -58,5 +60,13 @@ public class Estado {
 
 	public void setValorEmPontos(int valorEmPontos) {
 		this.valorEmPontos = valorEmPontos;
+	}
+
+	public String getSigla() {
+		return sigla;
+	}
+
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
 	}
 }

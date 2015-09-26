@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPressedButton">#14000000</color>
     <color name="colorAzulFraco">#3498DB</color>
+    <color name="colorAzulEscuro">#2980B9</color>
 
     <!-- Basic colors -->
     <color name="colorWhite">#fff</color>

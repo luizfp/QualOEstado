@@ -2,6 +2,7 @@ package br.com.lfpmobile.qualoestado.domain;
 
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.util.Log;
 
 import java.util.List;
 
@@ -61,11 +62,12 @@ public class Gerenciador {
         dicaLetra = new DicaLetra(estado, false);
     }
 
-	public boolean confirmaJogada(String jogadaUsuario, String nomeEstado) {
-		jogadaUsuario = StringUtils.stripAccents(jogadaUsuario).toLowerCase().trim();
-		nomeEstado = StringUtils.stripAccents(nomeEstado).toLowerCase().trim();
+	public boolean confirmaJogada(String jogadaUsuario, String nomeEstado, String siglaEstado) {
+		jogadaUsuario = StringUtils.stripAccents(jogadaUsuario).trim().toUpperCase();
+		nomeEstado = StringUtils.stripAccents(nomeEstado).trim().toUpperCase();
+        Log.i("SIGLA", siglaEstado);
 
-		return jogadaUsuario.equals(nomeEstado);
+		return jogadaUsuario.equals(nomeEstado) || jogadaUsuario.equals(siglaEstado);
 	}
 
     public boolean doesDatabaseExist(Context context) {

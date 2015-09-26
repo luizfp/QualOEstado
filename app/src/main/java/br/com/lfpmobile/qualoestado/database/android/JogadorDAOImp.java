@@ -57,6 +57,7 @@ public class JogadorDAOImp implements JogadorDAO {
         stmt.bindLong(9, Constants.VALOR_INICIAL_PONTOS_JOGADOR); // Menor número de pontos já obtido
         stmt.bindLong(10, 1); // App já usado. 1 == true, 0 == false
         stmt.execute();
+        DBHelper.close(db, sqLiteDatabase, null, stmt);
         return getJogador();
     }
 

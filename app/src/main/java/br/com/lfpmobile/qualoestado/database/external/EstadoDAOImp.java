@@ -21,6 +21,7 @@ public class EstadoDAOImp implements EstadoDAO{
     private static final String COLUNA_DESCRICAO = "DESCRICAO";
     private static final String COLUNA_NOME_IMG_MAPA = "NOMEIMGMAPA";
     private static final String COLUNA_NOME_IMG_BANDEIRA = "NOMEIMGBANDEIRA";
+    private static final String COLUNA_SIGLA = "SIGLA";
 
     public EstadoDAOImp(Context context) {
         this.context = context;
@@ -40,6 +41,7 @@ public class EstadoDAOImp implements EstadoDAO{
                 estado.setDescricao(c.getString(c.getColumnIndex(COLUNA_DESCRICAO)));
                 estado.setNomeImgMapa(c.getString(c.getColumnIndex(COLUNA_NOME_IMG_MAPA)));
                 estado.setNomeImgBandeira(c.getString(c.getColumnIndex(COLUNA_NOME_IMG_BANDEIRA)));
+                estado.setSigla(c.getString(c.getColumnIndex(COLUNA_SIGLA)));
                 listEstados.add(estado);
             } while (c.moveToNext());
         }

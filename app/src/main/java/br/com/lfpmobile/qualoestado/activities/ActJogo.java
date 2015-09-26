@@ -141,7 +141,7 @@ public class ActJogo extends AppCompatActivity {
         String resposta = edtResposta.getText().toString().trim();
         if (resposta.isEmpty())
             Toast.makeText(this, "Campo de resposta vazio", Toast.LENGTH_SHORT).show();
-        else if (gerenciador.confirmaJogada(resposta, estado.getNome())) {
+        else if (gerenciador.confirmaJogada(resposta, estado.getNome(), estado.getSigla())) {
             jaUsouDicaBandeira = false;
             jaUsouDicaDescricao = false;
             jaUsouDicaLetra = false;
