@@ -23,7 +23,11 @@
         </activity>
         <activity
             android:name=".activities.ActEstatistica"
-            android:label="@string/title_activity_act_estatistica">
+            android:label="@string/title_activity_act_estatistica" >
+        </activity>
+        <activity
+            android:name=".activities.ActOpcoes"
+            android:label="@string/title_activity_act_opcoes" >
         </activity>
     </application>
 

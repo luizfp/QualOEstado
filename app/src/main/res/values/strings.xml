@@ -18,4 +18,5 @@
     <!-- ActEstatistica -->
     <string name="title_activity_act_estatistica">Minhas Estatísticas</string>
     <string name="label_estatisticas">Estatísticas</string>
+    <string name="title_activity_act_opcoes">ActOpcoes</string>
 </resources>
