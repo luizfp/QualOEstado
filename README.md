@@ -6,5 +6,7 @@ Screenshots:
 
 ![ScreenShot](https://raw.githubusercontent.com/luizfp/QualOEstado/master/art/layout-2015-09-26-161147.png)
 
+<img src="https://raw.githubusercontent.com/luizfp/QualOEstado/master/art/layout-2015-09-26-161147.png" width="48">
+
 ![ScreenShot](https://raw.githubusercontent.com/luizfp/QualOEstado/master/art/layout-2015-09-26-161232.png)
 
