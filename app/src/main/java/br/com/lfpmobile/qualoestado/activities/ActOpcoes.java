@@ -7,7 +7,7 @@ import android.view.MenuItem;
 
 import br.com.lfpmobile.qualoestado.R;
 
-public class ActOpcoes extends AppCompatActivity {
+public class ActOpcoes extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

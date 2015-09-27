@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.lfpmobile.qualoestado" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="br.com.lfpmobile.qualoestado">
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_atalho"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
+
         <activity
             android:name=".activities.ActMain"
             android:label="@string/app_name"

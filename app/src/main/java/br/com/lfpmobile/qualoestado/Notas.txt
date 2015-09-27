@@ -34,8 +34,8 @@ Mostrar na tela a imagem da bandeira do estado corrente.
 
 
 //todo
-Na variável que indica se um jogador ja comprou uma dica, parar de usá-la e usar atributo que cada
-classe dica têm para indicar isso.
+Provavelmente se for comprada uma dica e sair do app, de modo que o garbage seja usado na hora de voltar
+as dicas ja compradas serao cobradas novamente. Verificar!
 
 Melhorar o que foi feito com as sharedPreferences e o Gson, tentar usar o bundle da própria activity
 respeitando o lifecycle

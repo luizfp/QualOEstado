@@ -15,7 +15,7 @@ import br.com.lfpmobile.qualoestado.domain.Gerenciador;
 import br.com.lfpmobile.qualoestado.domain.Jogador;
 import info.hoang8f.widget.FButton;
 
-public class ActMain extends AppCompatActivity {
+public class ActMain extends BaseActivity {
 
     private TextView txtPontosJogadorMenu;
     private Gerenciador gerenciador;

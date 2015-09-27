@@ -145,4 +145,10 @@ public class Gerenciador {
         jogadorDAOImp.atualizarNumPontos(jogador.getPontos());
         jogadorDAOImp.atualizarNumPulosResposta(jogador.getNumPulosResposta());
     }
+
+    public void resetarUsoDicas() {
+        this.dicaBandeira.setJaComprada(false);
+        this.dicaDescricao.setJaComprada(false);
+        this.dicaLetra.setJaComprada(false);
+    }
 }
