@@ -1,9 +1,12 @@
 package br.com.lfpmobile.qualoestado.activities;
 
+import android.annotation.TargetApi;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -56,9 +59,16 @@ public class ActJogo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_jogo);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
+
         edtResposta = (EditText)findViewById(R.id.edtResposta);
         imgEstado = (SubsamplingScaleImageView)findViewById(R.id.imgEstado);
-        txtPontosJogadorJogo = (TextView)findViewById(R.id.txtPontosJogadorJogo);
+        txtPontosJogadorJogo = (TextView) findViewById(R.id.txtPontosJogadorJogo);
 
         //set up button sound
         mpButtonClick = MediaPlayer.create(this, R.raw.button_click);
@@ -149,7 +159,7 @@ public class ActJogo extends AppCompatActivity {
             jaUsouDicaDescricao = false;
             jaUsouDicaLetra = false;
             novosPontos = jogador.getPontos() + Constants.VALOR_ACERTAR_RESPOSTA;
-            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 1000);
+            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 500);
             jogador.setPontos(novosPontos);
             jogador.setNumAcertos(jogador.getNumAcertos() + 1);
             gerenciador.acertouJogada(jogador);
@@ -159,7 +169,7 @@ public class ActJogo extends AppCompatActivity {
         } else {
             Toast.makeText(this,"Resposta incorreta!", Toast.LENGTH_SHORT).show();
             novosPontos = jogador.getPontos() - Constants.CUSTO_ERRAR_RESPOSTA;
-            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 1000);
+            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 500);
             jogador.setPontos(novosPontos);
             jogador.setNumErros(jogador.getNumErros() + 1);
             gerenciador.errouJogada(jogador);
@@ -172,7 +182,7 @@ public class ActJogo extends AppCompatActivity {
         jaUsouDicaDescricao = false;
         jaUsouDicaLetra = false;
         int novosPontos = jogador.getPontos() - Constants.CUSTO_PULAR_RESPOSTA;
-        CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 1000);
+        CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 500);
         jogador.setPontos(novosPontos);
         jogador.setNumPulosResposta(jogador.getNumPulosResposta() + 1);
         gerenciador.pulouJogada(jogador);
@@ -183,7 +193,7 @@ public class ActJogo extends AppCompatActivity {
     public void getDicaBandeira(View view) {
         if (!jaUsouDicaBandeira) {
             int novosPontos = jogador.getPontos() - gerenciador.getDicaBandeira().getCustoEmPontos();
-            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 1000);
+            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 500);
             jogador.setPontos(novosPontos);
             jogador.setNumUsosDicaBandeira(jogador.getNumUsosDicaBandeira() + 1);
             gerenciador.usouDicaBandeira(jogador);
@@ -197,7 +207,7 @@ public class ActJogo extends AppCompatActivity {
     public void getDicaDescricao(View view) {
         if (!jaUsouDicaDescricao) {
             int novosPontos = jogador.getPontos() - gerenciador.getDicaDescricao().getCustoEmPontos();
-            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 1000);
+            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 500);
             jogador.setPontos(novosPontos);
             jogador.setNumUsosDicaDescricao(jogador.getNumUsosDicaDescricao() + 1);
             gerenciador.usouDicaDescricao(jogador);
@@ -210,7 +220,7 @@ public class ActJogo extends AppCompatActivity {
     public void getDicaLetra(View view) {
         if (!jaUsouDicaLetra) {
             int novosPontos = jogador.getPontos() - gerenciador.getDicaLetra().getCustoEmPontos();
-            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 2000);
+            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 500);
             jogador.setPontos(novosPontos);
             jogador.setNumUsosDicaLetra(jogador.getNumUsosDicaLetra() + 1);
             gerenciador.usouDicaLetra(jogador);
@@ -218,6 +228,13 @@ public class ActJogo extends AppCompatActivity {
         }
         DFLetra dfLetra = DFLetra.newInstance(gerenciador.getDicaLetra());
         dfLetra.show(getSupportFragmentManager(), "TAG");
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        // assim gerenciador sempre referencia o jogador com os atributos mais novos
+        gerenciador.setJogador(jogador);
     }
 
     @Override
@@ -236,6 +253,11 @@ public class ActJogo extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        } else if (id == android.R.id.home) {
+            finish();
+            // assim gerenciador sempre referencia o jogador com os atributos mais novos
+            gerenciador.setJogador(jogador);
             return true;
         }
 

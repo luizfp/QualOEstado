@@ -119,37 +119,30 @@ public class Gerenciador {
     public void usouDicaBandeira(Jogador jogador) {
         jogadorDAOImp.atualizarNumPontos(jogador.getPontos());
         jogadorDAOImp.atualizarNumUsosDicaBandeira(jogador.getNumUsosDicaBandeira());
-        // dessa forma, o jogador referenciado pelo gerenciador, sempre tem os atributos atualizados
-        this.jogador = jogador;
     }
 
     public void usouDicaDescricao(Jogador jogador) {
         jogadorDAOImp.atualizarNumPontos(jogador.getPontos());
         jogadorDAOImp.atualizarNumUsosDicaDescricao(jogador.getNumUsosDicaDescricao());
-        this.jogador = jogador;
     }
 
     public void usouDicaLetra(Jogador jogador) {
         jogadorDAOImp.atualizarNumPontos(jogador.getPontos());
         jogadorDAOImp.atualizarNumUsosDicaLetra(jogador.getNumUsosDicaLetra());
-        this.jogador = jogador;
     }
 
     public void acertouJogada(Jogador jogador) {
         jogadorDAOImp.atualizarNumAcertos(jogador.getNumAcertos());
         jogadorDAOImp.atualizarNumPontos(jogador.getPontos());
-        this.jogador = jogador;
     }
 
     public void errouJogada(Jogador jogador) {
         jogadorDAOImp.atualizarNumPontos(jogador.getPontos());
         jogadorDAOImp.atualizarNumErros(jogador.getNumErros());
-        this.jogador = jogador;
     }
 
     public void pulouJogada(Jogador jogador) {
         jogadorDAOImp.atualizarNumPontos(jogador.getPontos());
         jogadorDAOImp.atualizarNumPulosResposta(jogador.getNumPulosResposta());
-        this.jogador = jogador;
     }
 }

@@ -27,7 +27,7 @@ public class ActMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_main);
-        Gerenciador gerenciador = Gerenciador.getInstance();
+        gerenciador = Gerenciador.getInstance();
 
         gerenciador.instanciarDAO(this);
 
@@ -51,7 +51,8 @@ public class ActMain extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        CountAnimation.startCountAnimation(0, jogador.getPontos(), txtPontosJogadorMenu, 2000);
+        jogador = gerenciador.getJogador();
+        CountAnimation.startCountAnimation(0, jogador.getPontos(), txtPontosJogadorMenu, 1000);
     }
 
     public void iniciarNovoJogo(View view) {

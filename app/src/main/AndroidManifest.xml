@@ -19,7 +19,8 @@
         </activity>
         <activity
             android:name=".activities.ActJogo"
-            android:label="@string/title_activity_act_jogo" >
+            android:label="@string/title_activity_act_jogo"
+            android:theme="@style/NoActionBar">
         </activity>
         <activity
             android:name=".activities.ActEstatistica"
