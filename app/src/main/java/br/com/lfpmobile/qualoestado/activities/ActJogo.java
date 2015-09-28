@@ -1,10 +1,12 @@
 package br.com.lfpmobile.qualoestado.activities;
 
 import android.annotation.TargetApi;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -158,12 +160,16 @@ public class ActJogo extends BaseActivity {
             gerenciador.acertouJogada(jogador);
             toast(getString(R.string.label_resposta_correta));
             edtResposta.setText("");
+            verificaMaiorNumPontos();
             setMapaOnScreen();
         } else {
             toast(getString(R.string.label_resposta_incorreta));
-            novosPontos = jogador.getPontos() - Constants.CUSTO_ERRAR_RESPOSTA;
-            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 500);
-            jogador.setPontos(novosPontos);
+            if (jogador.getPontos() > 0) {
+                novosPontos = jogador.getPontos() - Constants.CUSTO_ERRAR_RESPOSTA;
+                CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 500);
+                jogador.setPontos(novosPontos);
+                verificaMenorNumPontos();
+            }
             jogador.setNumErros(jogador.getNumErros() + 1);
             gerenciador.errouJogada(jogador);
         }
@@ -172,14 +178,25 @@ public class ActJogo extends BaseActivity {
     public void pularEstado(View view) {
         mpButtonClick.start();
         if (jogador.getPontos() >= Constants.CUSTO_PULAR_RESPOSTA) {
-            gerenciador.resetarUsoDicas();
-            int novosPontos = jogador.getPontos() - Constants.CUSTO_PULAR_RESPOSTA;
-            CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 500);
-            jogador.setPontos(novosPontos);
-            jogador.setNumPulosResposta(jogador.getNumPulosResposta() + 1);
-            gerenciador.pulouJogada(jogador);
-            edtResposta.setText("");
-            setMapaOnScreen();
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg.setMessage("Pular um estado custa " + Constants.CUSTO_PULAR_RESPOSTA + " pontos. Você " +
+                    "tem certeza que deseja pular?");
+            dlg.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    gerenciador.resetarUsoDicas();
+                    int novosPontos = jogador.getPontos() - Constants.CUSTO_PULAR_RESPOSTA;
+                    CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 500);
+                    jogador.setPontos(novosPontos);
+                    jogador.setNumPulosResposta(jogador.getNumPulosResposta() + 1);
+                    gerenciador.pulouJogada(jogador);
+                    edtResposta.setText("");
+                    verificaMenorNumPontos();
+                    setMapaOnScreen();
+                }
+            });
+            dlg.setNegativeButton("Cancelar", null);
+            dlg.show();
         } else
             MessageBox.show(this, "", getString(R.string.label_sem_pontos));
 
@@ -194,6 +211,7 @@ public class ActJogo extends BaseActivity {
                 jogador.setNumUsosDicaBandeira(jogador.getNumUsosDicaBandeira() + 1);
                 gerenciador.usouDicaBandeira(jogador);
                 gerenciador.getDicaBandeira().setJaComprada(true);
+                verificaMenorNumPontos();
                 showDicaBandeira();
             } else
                 MessageBox.show(this, "", getString(R.string.label_sem_pontos));
@@ -216,6 +234,7 @@ public class ActJogo extends BaseActivity {
                 jogador.setNumUsosDicaDescricao(jogador.getNumUsosDicaDescricao() + 1);
                 gerenciador.usouDicaDescricao(jogador);
                 gerenciador.getDicaDescricao().setJaComprada(true);
+                verificaMenorNumPontos();
                 showDicaDescricao();
             } else
                 MessageBox.show(this, "", getString(R.string.label_sem_pontos));
@@ -238,6 +257,7 @@ public class ActJogo extends BaseActivity {
                 jogador.setNumUsosDicaLetra(jogador.getNumUsosDicaLetra() + 1);
                 gerenciador.usouDicaLetra(jogador);
                 gerenciador.getDicaLetra().setJaComprada(true);
+                verificaMenorNumPontos();
                 showDicaLetra();
             } else
                 MessageBox.show(this, "", getString(R.string.label_sem_pontos));
@@ -249,6 +269,16 @@ public class ActJogo extends BaseActivity {
     private void showDicaLetra() {
         DFLetra dfLetra = DFLetra.newInstance(gerenciador.getDicaLetra());
         dfLetra.show(getSupportFragmentManager(), "TAG");
+    }
+
+    private void verificaMaiorNumPontos() {
+        if (jogador.getPontos() > jogador.getMaiorNumPontos())
+            jogador.setMaiorNumPontos(jogador.getPontos());
+    }
+
+    private void verificaMenorNumPontos() {
+        if (jogador.getPontos() < jogador.getMenorNumPontos())
+            jogador.setMenorNumPontos(jogador.getPontos());
     }
 
     @Override
@@ -276,9 +306,9 @@ public class ActJogo extends BaseActivity {
         if (id == R.id.action_settings) {
             return true;
         } else if (id == android.R.id.home) {
-            finish();
             // assim gerenciador sempre referencia o jogador com os atributos mais novos
             gerenciador.setJogador(jogador);
+            finish();
             return true;
         }
 

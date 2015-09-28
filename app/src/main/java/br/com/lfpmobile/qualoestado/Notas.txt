@@ -39,3 +39,4 @@ as dicas ja compradas serao cobradas novamente. Verificar!
 
 Melhorar o que foi feito com as sharedPreferences e o Gson, tentar usar o bundle da própria activity
 respeitando o lifecycle
+

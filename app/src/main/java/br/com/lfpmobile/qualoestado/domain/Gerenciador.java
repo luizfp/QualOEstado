@@ -119,36 +119,65 @@ public class Gerenciador {
     public void usouDicaBandeira(Jogador jogador) {
         jogadorDAOImp.atualizarNumPontos(jogador.getPontos());
         jogadorDAOImp.atualizarNumUsosDicaBandeira(jogador.getNumUsosDicaBandeira());
+        atualizarMenorNumPontos(jogador);
     }
 
     public void usouDicaDescricao(Jogador jogador) {
         jogadorDAOImp.atualizarNumPontos(jogador.getPontos());
         jogadorDAOImp.atualizarNumUsosDicaDescricao(jogador.getNumUsosDicaDescricao());
+        atualizarMenorNumPontos(jogador);
     }
 
     public void usouDicaLetra(Jogador jogador) {
         jogadorDAOImp.atualizarNumPontos(jogador.getPontos());
         jogadorDAOImp.atualizarNumUsosDicaLetra(jogador.getNumUsosDicaLetra());
+        atualizarMenorNumPontos(jogador);
     }
 
     public void acertouJogada(Jogador jogador) {
         jogadorDAOImp.atualizarNumAcertos(jogador.getNumAcertos());
         jogadorDAOImp.atualizarNumPontos(jogador.getPontos());
+        atualizarMaiorNumPontos(jogador);
     }
 
     public void errouJogada(Jogador jogador) {
         jogadorDAOImp.atualizarNumPontos(jogador.getPontos());
         jogadorDAOImp.atualizarNumErros(jogador.getNumErros());
+        atualizarMenorNumPontos(jogador);
     }
 
     public void pulouJogada(Jogador jogador) {
         jogadorDAOImp.atualizarNumPontos(jogador.getPontos());
         jogadorDAOImp.atualizarNumPulosResposta(jogador.getNumPulosResposta());
+        atualizarMenorNumPontos(jogador);
     }
 
     public void resetarUsoDicas() {
         this.dicaBandeira.setJaComprada(false);
         this.dicaDescricao.setJaComprada(false);
         this.dicaLetra.setJaComprada(false);
+    }
+
+
+    /**
+     * Chamado quando o jogador executa alguma ação que diminua seu número de pontos.
+     * @param jogador
+     */
+    private void atualizarMaiorNumPontos(Jogador jogador) {
+        if (jogador.getMaiorNumPontos() > this.jogador.getMaiorNumPontos()) {
+            this.jogador.setMaiorNumPontos(jogador.getPontos());
+            jogadorDAOImp.atualizarMaiorNumPontos(jogador.getPontos());
+        }
+    }
+
+    /**
+     * Chamado quando o jogador executa alguma ação que aumente seu número de pontos.
+     * @param jogador
+     */
+    private void atualizarMenorNumPontos(Jogador jogador) {
+        if (jogador.getMenorNumPontos() < this.jogador.getMenorNumPontos()) {
+            this.jogador.setMenorNumPontos(jogador.getPontos());
+            jogadorDAOImp.atualizarMenorNumPontos(jogador.getPontos());
+        }
     }
 }
