@@ -178,33 +178,50 @@ public class ActJogo extends BaseActivity {
     public void pularEstado(View view) {
         mpButtonClick.start();
         if (jogador.getPontos() >= Constants.CUSTO_PULAR_RESPOSTA) {
-            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
-            dlg.setMessage("Pular um estado custa " + Constants.CUSTO_PULAR_RESPOSTA + " pontos. Você " +
-                    "tem certeza que deseja pular?");
-            dlg.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    gerenciador.resetarUsoDicas();
-                    int novosPontos = jogador.getPontos() - Constants.CUSTO_PULAR_RESPOSTA;
-                    CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 500);
-                    jogador.setPontos(novosPontos);
-                    jogador.setNumPulosResposta(jogador.getNumPulosResposta() + 1);
-                    gerenciador.pulouJogada(jogador);
-                    edtResposta.setText("");
-                    verificaMenorNumPontos();
-                    setMapaOnScreen();
-                }
-            });
-            dlg.setNegativeButton("Cancelar", null);
-            dlg.show();
+            MessageBox.showAlertaGastoPontos(this, "Pular um estado custa " +
+                    Constants.CUSTO_PULAR_RESPOSTA + " pontos. Você tem certeza que deseja pular?")
+                    .setPositiveButton(getString(R.string.label_ok), positiveActionPular())
+                    .show();
         } else
             MessageBox.show(this, "", getString(R.string.label_sem_pontos));
 
     }
 
+    private DialogInterface.OnClickListener positiveActionPular() {
+        return new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                gerenciador.resetarUsoDicas();
+                int novosPontos = jogador.getPontos() - Constants.CUSTO_PULAR_RESPOSTA;
+                CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 500);
+                jogador.setPontos(novosPontos);
+                jogador.setNumPulosResposta(jogador.getNumPulosResposta() + 1);
+                gerenciador.pulouJogada(jogador);
+                edtResposta.setText("");
+                verificaMenorNumPontos();
+                setMapaOnScreen();
+            }
+        };
+    }
+
     public void getDicaBandeira(View view) {
         if (!gerenciador.getDicaBandeira().isJaComprada()) {
             if (jogador.getPontos() >= Constants.CUSTO_DICA_BANDEIRA) {
+                MessageBox.showAlertaGastoPontos(this, "Comprar uma Dica Bandeira custa " +
+                        Constants.CUSTO_DICA_BANDEIRA + " pontos. Você tem certeza que deseja comprar?")
+                        .setPositiveButton(getString(R.string.label_ok), positiveActionDicaBandeira())
+                        .show();
+            } else
+                MessageBox.show(this, "", getString(R.string.label_sem_pontos));
+        } else {
+            showDicaBandeira();
+        }
+    }
+
+    private DialogInterface.OnClickListener positiveActionDicaBandeira() {
+        return new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
                 int novosPontos = jogador.getPontos() - gerenciador.getDicaBandeira().getCustoEmPontos();
                 CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 500);
                 jogador.setPontos(novosPontos);
@@ -213,11 +230,8 @@ public class ActJogo extends BaseActivity {
                 gerenciador.getDicaBandeira().setJaComprada(true);
                 verificaMenorNumPontos();
                 showDicaBandeira();
-            } else
-                MessageBox.show(this, "", getString(R.string.label_sem_pontos));
-        } else {
-            showDicaBandeira();
-        }
+            }
+        };
     }
 
     private void showDicaBandeira() {
@@ -228,6 +242,21 @@ public class ActJogo extends BaseActivity {
     public void getDicaDescricao(View view) {
         if (!gerenciador.getDicaDescricao().isJaComprada()) {
             if (jogador.getPontos() >= Constants.CUSTO_DICA_DESCRICAO) {
+               MessageBox.showAlertaGastoPontos(this, "Comprar uma Dica Descrição custa " +
+                       Constants.CUSTO_DICA_DESCRICAO + " pontos. Você tem certeza que deseja comprar?")
+                       .setPositiveButton(getString(R.string.label_ok), positiveActionDicaDescricao())
+                       .show();
+            } else
+                MessageBox.show(this, "", getString(R.string.label_sem_pontos));
+        } else {
+            showDicaDescricao();
+        }
+    }
+
+    private DialogInterface.OnClickListener positiveActionDicaDescricao() {
+        return new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
                 int novosPontos = jogador.getPontos() - gerenciador.getDicaDescricao().getCustoEmPontos();
                 CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 500);
                 jogador.setPontos(novosPontos);
@@ -236,11 +265,8 @@ public class ActJogo extends BaseActivity {
                 gerenciador.getDicaDescricao().setJaComprada(true);
                 verificaMenorNumPontos();
                 showDicaDescricao();
-            } else
-                MessageBox.show(this, "", getString(R.string.label_sem_pontos));
-        } else {
-            showDicaDescricao();
-        }
+            }
+        };
     }
 
     private void showDicaDescricao() {
@@ -251,6 +277,21 @@ public class ActJogo extends BaseActivity {
     public void getDicaLetra(View view) {
         if (!gerenciador.getDicaLetra().isJaComprada()) {
             if (jogador.getPontos() >= Constants.CUSTO_DICA_LETRA) {
+                MessageBox.showAlertaGastoPontos(this, "Comprar uma Dica Letra custa " +
+                        Constants.CUSTO_DICA_LETRA + " pontos. Você tem certeza que deseja comprar?")
+                        .setPositiveButton(getString(R.string.label_ok), positiveActionDicaLetra())
+                        .show();
+            } else
+                MessageBox.show(this, "", getString(R.string.label_sem_pontos));
+        } else {
+            showDicaLetra();
+        }
+    }
+
+    private DialogInterface.OnClickListener positiveActionDicaLetra() {
+        return new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
                 int novosPontos = jogador.getPontos() - gerenciador.getDicaLetra().getCustoEmPontos();
                 CountAnimation.startCountAnimation(jogador.getPontos(), novosPontos, txtPontosJogadorJogo, 500);
                 jogador.setPontos(novosPontos);
@@ -259,11 +300,8 @@ public class ActJogo extends BaseActivity {
                 gerenciador.getDicaLetra().setJaComprada(true);
                 verificaMenorNumPontos();
                 showDicaLetra();
-            } else
-                MessageBox.show(this, "", getString(R.string.label_sem_pontos));
-        } else {
-            showDicaLetra();
-        }
+            }
+        };
     }
 
     private void showDicaLetra() {

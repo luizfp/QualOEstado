@@ -1,5 +1,7 @@
 package br.com.lfpmobile.qualoestado.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
@@ -20,5 +22,10 @@ public class BaseActivity extends DebugActivity {
 
     protected void toast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    protected void openActivity(Class c) {
+        Intent intent = new Intent(this, c);
+        startActivity(intent);
     }
 }

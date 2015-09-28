@@ -57,18 +57,17 @@ public class ActMain extends BaseActivity {
 
     public void iniciarNovoJogo(View view) {
         mpButtonClick.start();
-        Intent intent = new Intent(this, ActJogo.class);
-        startActivity(intent);
+        openActivity(ActJogo.class);
     }
 
     public void minhasEstatisticas(View view) {
         mpButtonClick.start();
-        Intent intent = new Intent(this, ActEstatistica.class);
-        startActivity(intent);
+        openActivity(ActEstatistica.class);
     }
 
     public void opcoesDeJogo(View view) {
         mpButtonClick.start();
+        openActivity(ActOpcoes.class);
     }
 
     @Override
