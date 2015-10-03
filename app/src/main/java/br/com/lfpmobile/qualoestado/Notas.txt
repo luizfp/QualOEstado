@@ -1,37 +1,3 @@
-Procedimentos
-
-Ao iniciar um novo jogo, o caminho da imagem de todos os 27 estados serão pegados
-e introduzidos aleatoriamente em uma list. Essa list que será usada para gerar as
-próximas imagens "aleatórias" de estados que o usuário tentará acertar.
-
-Sobre as classes Dica:
-
-Todas as classes Dica... terão que ser capazes de saber o estado corrente que
-sendo exibido na tela. Após a utilização de qualquer dica, o valor dela em pontos
-será descontado dos pontos acumulados do jogador.
-
-Sobre DicaDescricao:
-
-Pegar a descrição do estado corrente para mostrar ao jogador.
-
-Sobre DicaLetra:
-
-Pegar nome do estado para poder mostrar alguma das letras do estado ao jogador,
-bem como quantas letras o estado possuí, ajudando para que ele acerte qual é o 
-estado corrente.
-	
-	Sobre as letras mostradas:
-		Caso o jogador escolha essa dica, poderá ser exibido a primeira letra do 
-		nome estado para ele, a última, ou ambas. Também será informado a 
-		quantidade de letras do nome do estado. 
-		Será escolhido aleatóriamente se a ajuda será apenas da primeira letra, 
-		da última, ou de ambas. Porém, a quantidade de letras do nome do estado
-		sempre será informada.
-	
-Sobre DicaBandeira:
-
-Mostrar na tela a imagem da bandeira do estado corrente.
-
 
 //todo
 Provavelmente se for comprada uma dica e sair do app, de modo que o garbage seja usado na hora de voltar

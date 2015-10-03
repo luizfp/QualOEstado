@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.lfpmobile.qualoestado.database.DBHelper;
-import br.com.lfpmobile.qualoestado.domain.Estado;
+import br.com.lfpmobile.qualoestado.models.Estado;
 import br.com.lfpmobile.qualoestado.util.ListUtils;
 
 /**

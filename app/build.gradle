@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "br.com.lfpmobile.qualoestado"
-        minSdkVersion 10
+        minSdkVersion 11
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -27,4 +27,5 @@ dependencies {
     compile 'info.hoang8f:fbutton:1.0.5'
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.davemorrissey.labs:subsampling-scale-image-view:3.2.0'
+    compile 'com.github.machinarius:preferencefragment:0.1.1'
 }

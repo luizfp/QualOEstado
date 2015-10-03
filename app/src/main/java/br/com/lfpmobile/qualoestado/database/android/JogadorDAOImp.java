@@ -6,10 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
 import br.com.lfpmobile.qualoestado.Constants;
-import br.com.lfpmobile.qualoestado.database.android.AndroidDatabase;
 import br.com.lfpmobile.qualoestado.database.DBHelper;
-import br.com.lfpmobile.qualoestado.database.android.JogadorDAO;
-import br.com.lfpmobile.qualoestado.domain.Jogador;
+import br.com.lfpmobile.qualoestado.models.Jogador;
 
 /**
  * Created by luiz on 9/23/15.

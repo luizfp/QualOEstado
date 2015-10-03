@@ -11,7 +11,7 @@ import android.view.Window;
 import android.widget.ImageView;
 
 import br.com.lfpmobile.qualoestado.R;
-import br.com.lfpmobile.qualoestado.domain.DicaBandeira;
+import br.com.lfpmobile.qualoestado.models.DicaBandeira;
 import br.com.lfpmobile.qualoestado.util.DrawableUtils;
 import fr.tvbarthel.lib.blurdialogfragment.SupportBlurDialogFragment;
 

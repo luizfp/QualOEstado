@@ -12,9 +12,6 @@ public class CountAnimation {
     public CountAnimation() {
     }
 
-    //FIXME
-    // Funciona apenas da API 3.0 (HONEYCOMB) em diante.
-    @SuppressLint("NewApi")
     public static void startCountAnimation(int from, int to, final TextView textView, int duration) {
         ValueAnimator animator = new ValueAnimator();
         animator.setObjectValues(from, to);

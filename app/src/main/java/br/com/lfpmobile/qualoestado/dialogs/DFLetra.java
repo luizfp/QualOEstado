@@ -11,7 +11,7 @@ import android.view.Window;
 import android.widget.TextView;
 
 import br.com.lfpmobile.qualoestado.R;
-import br.com.lfpmobile.qualoestado.domain.DicaLetra;
+import br.com.lfpmobile.qualoestado.models.DicaLetra;
 import br.com.lfpmobile.qualoestado.util.StringUtils;
 import fr.tvbarthel.lib.blurdialogfragment.SupportBlurDialogFragment;
 

@@ -15,7 +15,8 @@
     <!-- ActJogo -->
     <string name="label_hint_resposta">Nome Estado ou sigla</string>
     <string name="label_pular">Pular</string>
-    <string name="label_resposta_correta">Resposta correta!</string>
+    <string name="label_resposta_correta">Resposta correta!
+    </string>
     <string name="label_resposta_incorreta">Resposta incorreta!</string>
     <string name="label_campo_resposta_vazio">Campo de resposta vazio</string>
     <string name="label_sem_pontos">Infelizmente, você não tem pontos suficientes</string>
@@ -23,6 +24,10 @@
     <!-- ActEstatistica -->
     <string name="title_activity_act_estatistica">Minhas Estatísticas</string>
     <string name="label_estatisticas">Estatísticas</string>
-    <string name="title_activity_act_opcoes">ActOpcoes</string>
+    <string name="title_activity_act_opcoes">Opções</string>
     <string name="label_som_botoes">Ativar som dos botões</string>
+
+    <string name="preference_title_sounds">Sons</string>
+    <string name="buttons">Botões</string>
+    <string name="preference_summary_buttons">Emitir som ao clicar em um botão</string>
 </resources>

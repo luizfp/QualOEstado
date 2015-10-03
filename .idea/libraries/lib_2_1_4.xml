@@ -5,6 +5,8 @@
       <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/fr.tvbarthel.blurdialogfragment/lib/2.1.4/res" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/fr.tvbarthel.blurdialogfragment/lib/2.1.4/d0df8a38d20e54cf1cb26047a6abc87295cdaf2a/lib-2.1.4-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

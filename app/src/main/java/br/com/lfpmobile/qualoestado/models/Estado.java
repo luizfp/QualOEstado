@@ -1,4 +1,4 @@
-package br.com.lfpmobile.qualoestado.domain;
+package br.com.lfpmobile.qualoestado.models;
 
 public class Estado {
 	

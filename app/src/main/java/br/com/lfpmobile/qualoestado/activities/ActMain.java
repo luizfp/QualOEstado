@@ -1,9 +1,7 @@
 package br.com.lfpmobile.qualoestado.activities;
 
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,8 +9,8 @@ import android.widget.TextView;
 
 import br.com.lfpmobile.qualoestado.R;
 import br.com.lfpmobile.qualoestado.app.CountAnimation;
-import br.com.lfpmobile.qualoestado.domain.Gerenciador;
-import br.com.lfpmobile.qualoestado.domain.Jogador;
+import br.com.lfpmobile.qualoestado.models.Gerenciador;
+import br.com.lfpmobile.qualoestado.models.Jogador;
 import info.hoang8f.widget.FButton;
 
 public class ActMain extends BaseActivity {

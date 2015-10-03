@@ -2,7 +2,7 @@ package br.com.lfpmobile.qualoestado.database.external;
 
 import java.util.List;
 
-import br.com.lfpmobile.qualoestado.domain.Estado;
+import br.com.lfpmobile.qualoestado.models.Estado;
 
 /**
  * Created by luiz on 9/23/15.

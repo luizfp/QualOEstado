@@ -1,6 +1,6 @@
 package br.com.lfpmobile.qualoestado.database.android;
 
-import br.com.lfpmobile.qualoestado.domain.Jogador;
+import br.com.lfpmobile.qualoestado.models.Jogador;
 
 /**
  * Created by luiz on 9/23/15.

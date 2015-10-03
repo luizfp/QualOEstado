@@ -1,25 +1,16 @@
 package br.com.lfpmobile.qualoestado.activities;
 
-import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
@@ -36,9 +27,9 @@ import br.com.lfpmobile.qualoestado.app.MessageBox;
 import br.com.lfpmobile.qualoestado.dialogs.DFBandeira;
 import br.com.lfpmobile.qualoestado.dialogs.DFDescricao;
 import br.com.lfpmobile.qualoestado.dialogs.DFLetra;
-import br.com.lfpmobile.qualoestado.domain.Estado;
-import br.com.lfpmobile.qualoestado.domain.Gerenciador;
-import br.com.lfpmobile.qualoestado.domain.Jogador;
+import br.com.lfpmobile.qualoestado.models.Estado;
+import br.com.lfpmobile.qualoestado.models.Gerenciador;
+import br.com.lfpmobile.qualoestado.models.Jogador;
 import br.com.lfpmobile.qualoestado.util.DrawableUtils;
 import br.com.lfpmobile.qualoestado.util.ListUtils;
 
