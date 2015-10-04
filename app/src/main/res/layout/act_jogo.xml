@@ -3,7 +3,7 @@
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.com.lfpmobile.qualoestado.activities.ActJogo"
+    tools:context="br.com.luizfp.qualoestado.activities.ActJogo"
     android:orientation="vertical"
     android:weightSum="1">
 
@@ -16,6 +16,7 @@
 
 
     <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+        android:layout_margin="5dp"
         android:id="@+id/imgEstado"
         android:layout_width="match_parent"
         android:layout_height="300dp"

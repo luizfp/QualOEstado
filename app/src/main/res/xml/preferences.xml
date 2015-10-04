@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        android:title="@string/preference_title_sounds">
+        android:title="@string/pref_title_sounds">
         <SwitchPreference
+            android:key="toggle_button_sound"
             android:title="@string/buttons"
-            android:summary="@string/preference_summary_buttons"
+            android:summary="@string/pref_summary_buttons"
             android:defaultValue="true"/>
 
         <SwitchPreference
+            android:key="toggle_bg_music"
             android:title="@string/background_music"
-            android:summary="@string/preference_summary_background_music"
+            android:summary="@string/pref_summary_bg_music"
             android:defaultValue="true"/>
 
         <ListPreference
-            android:key="list_preference_background_sound"
-            android:title="@string/preference_title_list_background_music"
-            android:summary="testeando o sumário"
-            android:entries="@array/entries_list_preference_background_music"
-            android:entryValues="@array/entryvalues_list_preference_backgrond_music"
-            android:dialogTitle="TESTE" />
+            android:key="list_bg_music"
+            android:title="@string/pref_title_list_bg_music"
+            android:summary="@string/list_pref_summary_bg_music"
+            android:entries="@array/entries_list_pref_bg_music"
+            android:entryValues="@array/entryvalues_list_pref_bg_music"
+            android:dialogTitle="@string/pref_title_list_bg_music"
+            android:defaultValue="1"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="br.com.lfpmobile.qualoestado">
+    package="br.com.luizfp.qualoestado">
 
     <application
-        android:name=".QualOEstadoApp"
+        android:name="br.com.luizfp.qualoestado.QualOEstadoApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_atalho"
         android:label="@string/app_name"
@@ -12,10 +12,10 @@
         tools:replace="android:icon">
 
         <service
-            android:name=".app.BackgroundSoundService"
+            android:name="br.com.luizfp.qualoestado.app.BackgroundSoundService"
             android:enabled="true"/>
         <activity
-            android:name=".activities.ActMain"
+            android:name="br.com.luizfp.qualoestado.activities.ActMain"
             android:label="@string/app_name"
             android:theme="@style/NoActionBar" >
             <intent-filter>
@@ -25,16 +25,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ActJogo"
+            android:name="br.com.luizfp.qualoestado.activities.ActJogo"
             android:label="@string/title_activity_act_jogo"
             android:theme="@style/NoActionBar">
         </activity>
         <activity
-            android:name=".activities.ActEstatistica"
+            android:name="br.com.luizfp.qualoestado.activities.ActEstatistica"
             android:label="@string/title_activity_act_estatistica" >
         </activity>
         <activity
-            android:name=".activities.ActOpcoes"
+            android:name="br.com.luizfp.qualoestado.activities.ActOpcoes"
             android:label="@string/title_activity_act_opcoes" >
         </activity>
     </application>

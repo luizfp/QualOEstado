@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="entries_list_preference_background_music">
+    <string-array name="entries_list_pref_bg_music">
         <item>Música 1</item>
         <item>Música 2</item>
         <item>Música 3</item>
     </string-array>
-    <string-array name="entryvalues_list_preference_backgrond_music">
-        <item>test1</item>
-        <item>test2</item>
-        <item>test3</item>
+    <string-array name="entryvalues_list_pref_bg_music">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
     </string-array>
 </resources>

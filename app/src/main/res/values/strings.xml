@@ -27,10 +27,11 @@
     <string name="title_activity_act_opcoes">Opções</string>
     <string name="label_som_botoes">Ativar som dos botões</string>
 
-    <string name="preference_title_sounds">Sons</string>
+    <string name="pref_title_sounds">Sons</string>
     <string name="buttons">Botões</string>
-    <string name="preference_summary_buttons">Emitir som ao clicar em um botão</string>
+    <string name="pref_summary_buttons">Emitir som ao clicar em um botão</string>
     <string name="background_music">Música de fundo</string>
-    <string name="preference_summary_background_music">Habilitar a música de fundo em todas as telas do jogo</string>
-    <string name="preference_title_list_background_music">Escolha a música de fundo</string>
+    <string name="pref_summary_bg_music">Habilitar a música de fundo em todas as telas do jogo</string>
+    <string name="pref_title_list_bg_music">Escolha a música de fundo</string>
+    <string name="list_pref_summary_bg_music">Selecione uma música de fundo que tocará durante todo o jogo</string>
 </resources>

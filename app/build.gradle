@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "br.com.lfpmobile.qualoestado"
-        minSdkVersion 11
+        minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -22,10 +22,12 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.0.1'
+
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
     compile 'fr.tvbarthel.blurdialogfragment:lib:2.1.4'
     compile 'info.hoang8f:fbutton:1.0.5'
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.davemorrissey.labs:subsampling-scale-image-view:3.2.0'
     compile 'com.github.machinarius:preferencefragment:0.1.1'
+    compile 'com.jakewharton:butterknife:7.0.1'
 }
