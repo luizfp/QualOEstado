@@ -21,7 +21,9 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import br.com.lfpmobile.qualoestado.Constants;
+import br.com.lfpmobile.qualoestado.QualOEstadoApp;
 import br.com.lfpmobile.qualoestado.R;
+import br.com.lfpmobile.qualoestado.app.BackgroundSoundService;
 import br.com.lfpmobile.qualoestado.app.CountAnimation;
 import br.com.lfpmobile.qualoestado.app.MessageBox;
 import br.com.lfpmobile.qualoestado.dialogs.DFBandeira;
@@ -78,6 +80,8 @@ public class ActJogo extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (!(((QualOEstadoApp)getApplication()).isTrocaActivity()))
+            startService(BackgroundSoundService.class);
         gerenciador = gerenciador.getInstance();
         gerenciador.instanciarDAO(this);
         sharedPreferences = getPreferences(MODE_PRIVATE);
@@ -108,6 +112,8 @@ public class ActJogo extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        stopService(BackgroundSoundService.class);
+        ((QualOEstadoApp)getApplication()).setTrocaActivity(false);
         sharedPreferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("KEY_STRING", new Gson().toJson(gerenciador.getListaEstados()));

@@ -9,7 +9,7 @@ import android.util.Log;
  */
 public class DebugActivity extends AppCompatActivity {
 
-    protected static final String TAG = "thatbook";
+    protected static final String TAG = "qualoestado";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

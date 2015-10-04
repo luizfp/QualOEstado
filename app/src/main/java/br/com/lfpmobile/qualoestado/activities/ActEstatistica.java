@@ -1,11 +1,13 @@
 package br.com.lfpmobile.qualoestado.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import br.com.lfpmobile.qualoestado.QualOEstadoApp;
 import br.com.lfpmobile.qualoestado.R;
+import br.com.lfpmobile.qualoestado.app.BackgroundSoundService;
 
 public class ActEstatistica extends BaseActivity {
 
@@ -13,6 +15,29 @@ public class ActEstatistica extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_estatistica);
+        setupActionBar();
+    }
+
+    private void setupActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            // Show the Up button in the action bar.
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!(((QualOEstadoApp)getApplication()).isTrocaActivity()))
+            startService(BackgroundSoundService.class);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopService(BackgroundSoundService.class);
+        ((QualOEstadoApp)getApplication()).setTrocaActivity(false);
     }
 
     @Override
@@ -31,6 +56,11 @@ public class ActEstatistica extends BaseActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if (id == android.R.id.home) {
+            finish();
             return true;
         }
 

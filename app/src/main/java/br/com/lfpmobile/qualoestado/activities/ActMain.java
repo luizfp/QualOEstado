@@ -7,7 +7,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import br.com.lfpmobile.qualoestado.QualOEstadoApp;
 import br.com.lfpmobile.qualoestado.R;
+import br.com.lfpmobile.qualoestado.app.BackgroundSoundService;
 import br.com.lfpmobile.qualoestado.app.CountAnimation;
 import br.com.lfpmobile.qualoestado.models.Gerenciador;
 import br.com.lfpmobile.qualoestado.models.Jogador;
@@ -20,6 +22,7 @@ public class ActMain extends BaseActivity {
     private Jogador jogador;
     private FButton btnNovoJogo, btnEstatisticas, btnOpcoes;
     private MediaPlayer mpButtonClick;
+    private QualOEstadoApp qualOEstadoApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,22 +53,35 @@ public class ActMain extends BaseActivity {
     protected void onResume() {
         super.onResume();
         jogador = gerenciador.getJogador();
+        qualOEstadoApp = (QualOEstadoApp)getApplication();
         CountAnimation.startCountAnimation(0, jogador.getPontos(), txtPontosJogadorMenu, 1000);
+        startService(BackgroundSoundService.class);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (!qualOEstadoApp.isTrocaActivity()) {
+            stopService(BackgroundSoundService.class);
+        }
     }
 
     public void iniciarNovoJogo(View view) {
         mpButtonClick.start();
         openActivity(ActJogo.class);
+        qualOEstadoApp.setTrocaActivity(true);
     }
 
     public void minhasEstatisticas(View view) {
         mpButtonClick.start();
         openActivity(ActEstatistica.class);
+        qualOEstadoApp.setTrocaActivity(true);
     }
 
     public void opcoesDeJogo(View view) {
         mpButtonClick.start();
         openActivity(ActOpcoes.class);
+        qualOEstadoApp.setTrocaActivity(true);
     }
 
     @Override
