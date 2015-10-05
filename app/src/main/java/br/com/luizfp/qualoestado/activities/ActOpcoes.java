@@ -3,9 +3,6 @@ package br.com.luizfp.qualoestado.activities;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.PreferenceFragment;
-import android.preference.SwitchPreference;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +10,7 @@ import android.view.MenuItem;
 import br.com.luizfp.qualoestado.QualOEstadoApp;
 import br.com.luizfp.qualoestado.R;
 import br.com.luizfp.qualoestado.app.BackgroundSoundService;
-import br.com.luizfp.qualoestado.util.PrefUtils;
+import br.com.luizfp.qualoestado.fragments.PrefsFragment;
 
 public class ActOpcoes extends BaseActivity {
 
@@ -40,7 +37,8 @@ public class ActOpcoes extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (!(((QualOEstadoApp)getApplication()).isTrocaActivity()))
+        if (!(((QualOEstadoApp)getApplication()).isTrocaActivity()) &&
+                (((QualOEstadoApp)getApplication()).isPlayBgMusic()))
             startService(BackgroundSoundService.class);
     }
 
@@ -75,41 +73,5 @@ public class ActOpcoes extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    // support.v4 não aceita PreferenceFragment, por isso a lib do github.
-    public static class PrefsFragment extends PreferenceFragment {
-
-        private static final String TOGGLE_BUTTON_SOUND = "toggle_button_sound";
-        private static final String TOGGLE_BG_MUSIC = "toggle_bg_music";
-        private static final String LIST_BG_MUSIC = "list_bg_music";
-
-        SwitchPreference toggleButtonSound;
-        SwitchPreference toggleBgMusic;
-        ListPreference listBgMusic;
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-
-            // Load the preferences from an XML resource
-            addPreferencesFromResource(R.xml.preferences);
-
-            toggleButtonSound = (SwitchPreference) findPreference(TOGGLE_BUTTON_SOUND);
-            toggleBgMusic = (SwitchPreference) findPreference(TOGGLE_BG_MUSIC);
-            listBgMusic = (ListPreference) findPreference(LIST_BG_MUSIC);
-
-            PrefUtils prefUtils = PrefUtils.getInstance(getActivity());
-
-            if (!prefUtils.getButtonSound())
-                toggleButtonSound.setChecked(false);
-
-            if (!prefUtils.isBgMusicEnable()) {
-                toggleBgMusic.setChecked(false);
-                listBgMusic.setEnabled(false);
-            }
-
-            listBgMusic.setValueIndex(prefUtils.getBgMusic());
-        }
     }
 }

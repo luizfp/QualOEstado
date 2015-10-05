@@ -2,6 +2,7 @@ package br.com.luizfp.qualoestado.activities;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,8 @@ public class ActMain extends BaseActivity {
     private Jogador jogador;
     private MediaPlayer mpButtonClick;
     private QualOEstadoApp qualOEstadoApp;
+    private boolean playButtonSound;
+    private boolean playBgMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +55,12 @@ public class ActMain extends BaseActivity {
         super.onResume();
         jogador = gerenciador.getJogador();
         qualOEstadoApp = (QualOEstadoApp)getApplication();
+        playBgMusic = qualOEstadoApp.isPlayBgMusic();
+        playButtonSound = qualOEstadoApp.isPlayButtonSound();
+        Log.d(TAG, "playButtonSound is: " + String.valueOf(playButtonSound));
         CountAnimation.startCountAnimation(0, jogador.getPontos(), txtPontosJogadorMenu, 1000);
-        startService(BackgroundSoundService.class);
+        if (playBgMusic)
+            startService(BackgroundSoundService.class);
     }
 
     @Override
@@ -65,20 +72,23 @@ public class ActMain extends BaseActivity {
     }
 
     @OnClick(R.id.btnNovoJogo) void iniciarNovoJogo() {
-        mpButtonClick.start();
+        if (playButtonSound)
+            mpButtonClick.start();
         openActivity(ActJogo.class);
         qualOEstadoApp.setTrocaActivity(true);
     }
 
 
     @OnClick(R.id.btnEstatisticas) void minhasEstatisticas() {
-        mpButtonClick.start();
+        if (playButtonSound)
+            mpButtonClick.start();
         openActivity(ActEstatistica.class);
         qualOEstadoApp.setTrocaActivity(true);
     }
 
     @OnClick(R.id.btnOpcoes) void opcoesDeJogo() {
-        mpButtonClick.start();
+        if (playButtonSound)
+            mpButtonClick.start();
         openActivity(ActOpcoes.class);
         qualOEstadoApp.setTrocaActivity(true);
     }

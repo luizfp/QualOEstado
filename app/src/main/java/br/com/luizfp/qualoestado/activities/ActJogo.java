@@ -80,7 +80,8 @@ public class ActJogo extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (!(((QualOEstadoApp)getApplication()).isTrocaActivity()))
+        if (!(((QualOEstadoApp)getApplication()).isTrocaActivity()) &&
+                ((QualOEstadoApp)getApplication()).isPlayBgMusic())
             startService(BackgroundSoundService.class);
         gerenciador = gerenciador.getInstance();
         gerenciador.instanciarDAO(this);
@@ -139,8 +140,9 @@ public class ActJogo extends BaseActivity {
     }
 
     public void confirmarResposta(View view) {
-        mpButtonClick.start();
-       confirmarResposta();
+        if (((QualOEstadoApp)getApplication()).isPlayButtonSound())
+            mpButtonClick.start();
+        confirmarResposta();
     }
 
     private void confirmarResposta() {
@@ -173,7 +175,8 @@ public class ActJogo extends BaseActivity {
     }
 
     public void pularEstado(View view) {
-        mpButtonClick.start();
+        if (((QualOEstadoApp)getApplication()).isPlayButtonSound())
+            mpButtonClick.start();
         if (jogador.getPontos() >= Constants.CUSTO_PULAR_RESPOSTA) {
             MessageBox.showAlertaGastoPontos(this, "Pular um estado custa " +
                     Constants.CUSTO_PULAR_RESPOSTA + " pontos. Você tem certeza que deseja pular?")

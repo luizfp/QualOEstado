@@ -14,10 +14,9 @@ public class PrefUtils {
     private static final String LIST_BG_MUSIC = "list_bg_music";
 
     private static volatile PrefUtils prefUtils;
-
     private static SharedPreferences sharedPreferences;
 
-    public PrefUtils(Context context) {
+    private PrefUtils(Context context) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
@@ -28,8 +27,18 @@ public class PrefUtils {
         return prefUtils;
     }
 
-    public int getBgMusic() {
-        return sharedPreferences.getInt(LIST_BG_MUSIC, 1);
+    public void registerOnSharedPreferenceChangeListener(
+            SharedPreferences.OnSharedPreferenceChangeListener listener){
+        sharedPreferences.registerOnSharedPreferenceChangeListener(listener);
+    }
+
+    public void unregisterOnSharedPreferenceChangeListener(
+            SharedPreferences.OnSharedPreferenceChangeListener listener){
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener);
+    }
+
+    public String getBgMusic() {
+        return sharedPreferences.getString(LIST_BG_MUSIC, "Música 1");
     }
 
     public boolean getButtonSound() {

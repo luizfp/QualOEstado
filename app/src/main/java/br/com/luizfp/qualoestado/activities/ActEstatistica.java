@@ -29,7 +29,8 @@ public class ActEstatistica extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (!(((QualOEstadoApp)getApplication()).isTrocaActivity()))
+        if (!(((QualOEstadoApp)getApplication()).isTrocaActivity()) &&
+                ((QualOEstadoApp)getApplication()).isPlayBgMusic())
             startService(BackgroundSoundService.class);
     }
 
