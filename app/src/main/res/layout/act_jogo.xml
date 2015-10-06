@@ -90,26 +90,24 @@
             android:id="@+id/llButtonsJogo">
 
             <info.hoang8f.widget.FButton
-                android:onClick="pularEstado"
+                android:id="@+id/btnPularEstado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 fbutton:shadowEnabled="true"
                 fbutton:buttonColor="@color/colorWarningButton"
                 android:text="@string/label_pular"
                 android:textColor="@color/colorWhite"
-                android:id="@+id/pularEstado"
                 android:layout_weight="1"
                 android:layout_marginRight="10dp" />
 
             <info.hoang8f.widget.FButton
-                android:onClick="confirmarResposta"
+                android:id="@+id/btnConfirmarResposta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 fbutton:shadowEnabled="true"
                 fbutton:buttonColor="@color/colorSuccessButton"
                 android:text="@string/label_ok"
                 android:textColor="@color/colorWhite"
-                android:id="@+id/btnConfirmarResposta"
                 android:layout_weight="1" />
 
         </LinearLayout>

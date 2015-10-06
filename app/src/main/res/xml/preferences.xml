@@ -21,7 +21,7 @@
             android:entries="@array/entries_list_pref_bg_music"
             android:entryValues="@array/entryvalues_list_pref_bg_music"
             android:dialogTitle="@string/pref_title_list_bg_music"
-            android:defaultValue="1"/>
+            android:defaultValue="0"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

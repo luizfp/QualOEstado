@@ -34,6 +34,8 @@ import br.com.luizfp.qualoestado.models.Gerenciador;
 import br.com.luizfp.qualoestado.models.Jogador;
 import br.com.luizfp.qualoestado.util.DrawableUtils;
 import br.com.luizfp.qualoestado.util.ListUtils;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ActJogo extends BaseActivity {
 
@@ -53,6 +55,7 @@ public class ActJogo extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_jogo);
+        ButterKnife.bind(this);
 
         setUpToolbar();
 
@@ -77,7 +80,7 @@ public class ActJogo extends BaseActivity {
 
     }
 
-    @Override
+
     protected void onResume() {
         super.onResume();
         if (!(((QualOEstadoApp)getApplication()).isTrocaActivity()) &&
@@ -139,13 +142,13 @@ public class ActJogo extends BaseActivity {
         posicaoLista++;
     }
 
-    public void confirmarResposta(View view) {
+    @OnClick(R.id.btnConfirmarResposta) void confirmarResposta() {
         if (((QualOEstadoApp)getApplication()).isPlayButtonSound())
             mpButtonClick.start();
-        confirmarResposta();
+        confirmaResposta();
     }
 
-    private void confirmarResposta() {
+    private void confirmaResposta() {
         int novosPontos;
         String resposta = edtResposta.getText().toString().trim();
         if (resposta.isEmpty())
@@ -174,7 +177,7 @@ public class ActJogo extends BaseActivity {
         }
     }
 
-    public void pularEstado(View view) {
+    @OnClick(R.id.btnPularEstado) void pularEstado() {
         if (((QualOEstadoApp)getApplication()).isPlayButtonSound())
             mpButtonClick.start();
         if (jogador.getPontos() >= Constants.CUSTO_PULAR_RESPOSTA) {

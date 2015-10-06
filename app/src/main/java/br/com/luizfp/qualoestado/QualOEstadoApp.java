@@ -46,7 +46,7 @@ public class QualOEstadoApp extends Application {
     }
 
     public void refreshPlayButtonSound() {
-        Log.d(TAG, "Refresh called");
+        //Log.d(TAG, "Refresh called");
         playButtonSound = PrefUtils.getInstance(this).getButtonSound();
     }
 

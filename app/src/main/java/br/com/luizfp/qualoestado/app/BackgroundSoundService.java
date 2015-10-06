@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import br.com.luizfp.qualoestado.R;
+import br.com.luizfp.qualoestado.util.BgMusicUtils;
+import br.com.luizfp.qualoestado.util.PrefUtils;
 
 /**
  * Created by luiz on 10/3/15.
@@ -16,6 +18,14 @@ public class BackgroundSoundService extends Service {
 
     private static final String TAG = "qualoestado";
     private MediaPlayer mediaPlayer;
+    private static final String MUSICA_1 = "background_1";
+    private static final String MUSICA_2 = "background_2";
+    private static final String MUSICA_3 = "background_3";
+    private static final String MUSICA_4 = "background_4";
+    private static final String PREFS_MUSICA_1 = "Música 1";
+    private static final String PREFS_MUSICA_2 = "Música 2";
+    private static final String PREFS_MUSICA_3 = "Música 3";
+    private static final String PREFS_MUSICA_4 = "Música 4";
 
     @Nullable
     @Override
@@ -27,7 +37,27 @@ public class BackgroundSoundService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.d(TAG, "Service created");
-        mediaPlayer = mediaPlayer.create(this, R.raw.background_1);
+        int resId;
+        Log.d(TAG, "Prefs BG: " + PrefUtils.getInstance(this).getBgMusic());
+        switch (PrefUtils.getInstance(this).getBgMusic()) {
+            case 0:
+                resId = BgMusicUtils.getRawIdByName(MUSICA_1, this);
+                mediaPlayer = mediaPlayer.create(this, resId);
+                break;
+            case 1:
+                resId = BgMusicUtils.getRawIdByName(MUSICA_2, this);
+                mediaPlayer = mediaPlayer.create(this, resId);
+                break;
+            case 2:
+                resId = BgMusicUtils.getRawIdByName(MUSICA_3, this);
+                mediaPlayer = mediaPlayer.create(this, resId);
+                break;
+            case 3:
+                resId = BgMusicUtils.getRawIdByName(MUSICA_4, this);
+                mediaPlayer = mediaPlayer.create(this, resId);
+                break;
+        }
+        mediaPlayer.setVolume(100, 100);
         mediaPlayer.setLooping(true);
     }
 

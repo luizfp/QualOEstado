@@ -8,6 +8,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.SwitchPreference;
+import android.util.Log;
 
 import br.com.luizfp.qualoestado.QualOEstadoApp;
 import br.com.luizfp.qualoestado.R;
@@ -25,6 +26,7 @@ public class PrefsFragment extends PreferenceFragment implements
     private static final String TOGGLE_BUTTON_SOUND = "toggle_button_sound";
     private static final String TOGGLE_BG_MUSIC = "toggle_bg_music";
     private static final String LIST_BG_MUSIC = "list_bg_music";
+    private static final String TAG = "qualoestado";
 
     Context context;
     PrefUtils prefUtils;
@@ -54,7 +56,7 @@ public class PrefsFragment extends PreferenceFragment implements
             listBgMusic.setEnabled(false);
         }
 
-        listBgMusic.setValue(prefUtils.getBgMusic());
+        listBgMusic.setValueIndex(prefUtils.getBgMusic());
 
         toggleBgMusic.setOnPreferenceChangeListener(this);
         toggleButtonSound.setOnPreferenceChangeListener(this);
@@ -74,12 +76,36 @@ public class PrefsFragment extends PreferenceFragment implements
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        ((QualOEstadoApp)getActivity().getApplication()).refreshPlayButtonSound();
-        ((QualOEstadoApp)getActivity().getApplication()).refreshPlayBgMusic();
+        switch (key) {
+            case LIST_BG_MUSIC:
+                restartService(BackgroundSoundService.class);
+                break;
+            case TOGGLE_BUTTON_SOUND:
+                ((QualOEstadoApp)getActivity().getApplication()).refreshPlayButtonSound();
+                break;
+            case TOGGLE_BG_MUSIC:
+                ((QualOEstadoApp)getActivity().getApplication()).refreshPlayBgMusic();
+                if (toggleBgMusic.isChecked()) {
+                    listBgMusic.setEnabled(true);
+                    startService(BackgroundSoundService.class);
+                }
+                else {
+                    listBgMusic.setEnabled(false);
+                    stopService(BackgroundSoundService.class);
+                }
+                break;
+        }
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        Log.d(TAG, "PregerenceListChange reached");
+
+        /*
+         * Parece ter um bug esquisito aqui, de lógica básica.
+         */
+
+        /*
         switch (preference.getKey()) {
             case TOGGLE_BG_MUSIC:
                 if (!toggleBgMusic.isChecked()) {
@@ -91,10 +117,14 @@ public class PrefsFragment extends PreferenceFragment implements
                     stopService(BackgroundSoundService.class);
                 }
                 break;
-            case TOGGLE_BUTTON_SOUND:
-                break;
         }
+        */
         return true;
+    }
+
+    private void restartService(Class c) {
+        stopService(c);
+        startService(c);
     }
 
     private void startService(Class c) {

@@ -4,8 +4,10 @@
         <item>Música 1</item>
         <item>Música 2</item>
         <item>Música 3</item>
+        <item>Música 4</item>
     </string-array>
     <string-array name="entryvalues_list_pref_bg_music">
+        <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>

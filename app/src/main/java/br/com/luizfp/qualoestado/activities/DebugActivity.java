@@ -72,8 +72,7 @@ public class DebugActivity extends AppCompatActivity {
     public String getClassName() {
         // Retorna o nome da classe sem o pacote
         Class cls = ((Object) this).getClass();
-        String s = cls.getSimpleName();
-        return s;
+        return cls.getSimpleName();
     }
 
     protected void log(String msg) {
@@ -87,6 +86,6 @@ public class DebugActivity extends AppCompatActivity {
     }
 
     protected boolean isLogLifecycle() {
-        return false;
+        return true;
     }
 }

@@ -37,8 +37,8 @@ public class PrefUtils {
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener);
     }
 
-    public String getBgMusic() {
-        return sharedPreferences.getString(LIST_BG_MUSIC, "Música 1");
+    public int getBgMusic() {
+        return Integer.parseInt(sharedPreferences.getString(LIST_BG_MUSIC, "0"));
     }
 
     public boolean getButtonSound() {
