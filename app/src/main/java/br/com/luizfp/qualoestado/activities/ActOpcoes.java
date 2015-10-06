@@ -14,6 +14,8 @@ import br.com.luizfp.qualoestado.fragments.PrefsFragment;
 
 public class ActOpcoes extends BaseActivity {
 
+    boolean stopMusicService = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +45,16 @@ public class ActOpcoes extends BaseActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        stopMusicService = false;
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
-        stopService(BackgroundSoundService.class);
+        if (stopMusicService)
+            stopService(BackgroundSoundService.class);
         ((QualOEstadoApp)getApplication()).setTrocaActivity(false);
     }
 
@@ -68,6 +77,7 @@ public class ActOpcoes extends BaseActivity {
             return true;
         }
         if (id == android.R.id.home) {
+            stopMusicService = false;
             finish();
             return true;
         }

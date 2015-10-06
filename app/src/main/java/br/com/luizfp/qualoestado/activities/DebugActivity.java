@@ -19,6 +19,14 @@ public class DebugActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (isLogLifecycle()) {
+            log(getClassName() + ".onBackPressed().");
+        }
+    }
+
     protected void onStart() {
         super.onStart();
         if (isLogLifecycle()) {
@@ -86,6 +94,6 @@ public class DebugActivity extends AppCompatActivity {
     }
 
     protected boolean isLogLifecycle() {
-        return true;
+        return false;
     }
 }

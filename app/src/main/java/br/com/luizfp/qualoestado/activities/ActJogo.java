@@ -50,6 +50,7 @@ public class ActJogo extends BaseActivity {
     private TextView txtPontosJogadorJogo;
     private MediaPlayer mpButtonClick;
     private SharedPreferences sharedPreferences;
+    boolean stopMusicService = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +117,8 @@ public class ActJogo extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        stopService(BackgroundSoundService.class);
+        if (stopMusicService)
+            stopService(BackgroundSoundService.class);
         ((QualOEstadoApp)getApplication()).setTrocaActivity(false);
         sharedPreferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -325,6 +327,7 @@ public class ActJogo extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        stopMusicService = false;
         // assim gerenciador sempre referencia o jogador com os atributos mais novos
         gerenciador.setJogador(jogador);
     }
@@ -347,6 +350,7 @@ public class ActJogo extends BaseActivity {
         if (id == R.id.action_settings) {
             return true;
         } else if (id == android.R.id.home) {
+            stopMusicService = false;
             // assim gerenciador sempre referencia o jogador com os atributos mais novos
             gerenciador.setJogador(jogador);
             finish();

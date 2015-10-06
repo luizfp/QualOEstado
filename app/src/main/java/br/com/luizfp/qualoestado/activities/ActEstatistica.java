@@ -11,6 +11,8 @@ import br.com.luizfp.qualoestado.app.BackgroundSoundService;
 
 public class ActEstatistica extends BaseActivity {
 
+    boolean stopMusicService = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +37,16 @@ public class ActEstatistica extends BaseActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        stopMusicService = false;
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
-        stopService(BackgroundSoundService.class);
+        if (stopMusicService)
+            stopService(BackgroundSoundService.class);
         ((QualOEstadoApp)getApplication()).setTrocaActivity(false);
     }
 
@@ -61,6 +70,7 @@ public class ActEstatistica extends BaseActivity {
         }
 
         if (id == android.R.id.home) {
+            stopMusicService = false;
             finish();
             return true;
         }
