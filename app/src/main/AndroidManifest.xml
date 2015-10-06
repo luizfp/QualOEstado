@@ -17,7 +17,7 @@
         <activity
             android:name="br.com.luizfp.qualoestado.activities.ActMain"
             android:label="@string/app_name"
-            android:theme="@style/NoActionBar" >
+            android:theme="@style/NoActionBar.Main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +27,7 @@
         <activity
             android:name="br.com.luizfp.qualoestado.activities.ActJogo"
             android:label="@string/title_activity_act_jogo"
-            android:theme="@style/NoActionBar">
+            android:theme="@style/NoActionBar.Jogo">
         </activity>
         <activity
             android:name="br.com.luizfp.qualoestado.activities.ActEstatistica"
