@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import br.com.luizfp.qualoestado.QualOEstadoApp;
 import br.com.luizfp.qualoestado.R;
 import br.com.luizfp.qualoestado.app.BackgroundSoundService;
+import br.com.luizfp.qualoestado.models.Gerenciador;
+import br.com.luizfp.qualoestado.models.Jogador;
 
 public class ActEstatistica extends BaseActivity {
 
@@ -18,6 +21,32 @@ public class ActEstatistica extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_estatistica);
         setupActionBar();
+
+        TextView txtStatsNumAcertos = (TextView)findViewById(R.id.txtStatsNumAcertos);
+        TextView txtStatsNumErros = (TextView)findViewById(R.id.txtStatsNumErros);
+        TextView txtStatsNumPulos = (TextView)findViewById(R.id.txtStatsNumPulos);
+        TextView txtStatsNumUsosDicaBandeira = (TextView)findViewById(R.id.txtStatsNumUsosDicaBandeira);
+        TextView txtStatsNumUsosDicaDescricao = (TextView)findViewById(R.id.txtStatsNumUsosDicaDescricao);
+        TextView txtStatsNumUsosDicaLetra = (TextView)findViewById(R.id.txtStatsNumUsosDicaLetra);
+        TextView txtStatsMaiorNumPontos = (TextView)findViewById(R.id.txtStatsMaiorNumPontos);
+        TextView txtStatsMenorNumPontos = (TextView)findViewById(R.id.txtStatsMenorNumPontos);
+
+        Gerenciador gerenciador = Gerenciador.getInstance();
+        gerenciador.buscarJogador();
+        Jogador jogador = gerenciador.getJogador();
+
+        txtStatsNumAcertos.setText(toString(jogador.getNumAcertos()));
+        txtStatsNumErros.setText(toString(jogador.getNumErros()));
+        txtStatsNumPulos.setText(toString(jogador.getNumPulosResposta()));
+        txtStatsNumUsosDicaBandeira.setText(toString(jogador.getNumUsosDicaBandeira()));
+        txtStatsNumUsosDicaDescricao.setText(toString(jogador.getNumUsosDicaDescricao()));
+        txtStatsNumUsosDicaLetra.setText(toString(jogador.getNumUsosDicaLetra()));
+        txtStatsMaiorNumPontos.setText(toString(jogador.getMaiorNumPontos()));
+        txtStatsMenorNumPontos.setText(toString(jogador.getMenorNumPontos()));
+    }
+
+    private String toString(int toString) {
+        return String.valueOf(toString);
     }
 
     private void setupActionBar() {

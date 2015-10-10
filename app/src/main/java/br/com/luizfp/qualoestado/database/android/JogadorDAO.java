@@ -1,5 +1,7 @@
 package br.com.luizfp.qualoestado.database.android;
 
+import java.util.List;
+
 import br.com.luizfp.qualoestado.models.Jogador;
 
 /**
@@ -19,5 +21,6 @@ public interface JogadorDAO {
     void atualizarMaiorNumPontos(int numero);
     void atualizarMenorNumPontos(int numero);
     void atualizarAppJaUsado(boolean b);
+    List getTodasEstatisticas();
     boolean appJaUsado();
 }

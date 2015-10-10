@@ -1,19 +1,287 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/background_stats"
     tools:context="br.com.luizfp.qualoestado.activities.ActEstatistica">
 
-    <TextView
-        android:id="@+id/txtStats"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="82dp" />
-</RelativeLayout>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/table_row_rounded">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/stats.num.acertos"
+                android:id="@+id/textView3"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="135"
+                android:id="@+id/txtStatsNumAcertos"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/table_row_rounded_claro">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/stats.num.erros"
+                android:id="@+id/textView5"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="135"
+                android:id="@+id/txtStatsNumErros"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/table_row_rounded">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/stats.num.pulos.resposta"
+                android:id="@+id/textView7"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="135"
+                android:id="@+id/txtStatsNumPulos"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/table_row_rounded_claro">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/stats.num.usos.dica.bandeira"
+                android:id="@+id/textView9"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="135"
+                android:id="@+id/txtStatsNumUsosDicaBandeira"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/table_row_rounded">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/stats.num.usos.dica.descricao"
+                android:id="@+id/textView11"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="135"
+                android:id="@+id/txtStatsNumUsosDicaDescricao"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/table_row_rounded_claro">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/stats.num.usos.dica.letra"
+                android:id="@+id/textView13"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="135"
+                android:id="@+id/txtStatsNumUsosDicaLetra"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/table_row_rounded">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/stats.maior.num.pontos"
+                android:id="@+id/textView15"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="135"
+                android:id="@+id/txtStatsMaiorNumPontos"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/table_row_rounded_claro">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/stats.menor.num.pontos"
+                android:id="@+id/textView17"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/table_row_height"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="135"
+                android:id="@+id/txtStatsMenorNumPontos"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center" />
+        </TableRow>
+    </TableLayout>
+
+</FrameLayout>

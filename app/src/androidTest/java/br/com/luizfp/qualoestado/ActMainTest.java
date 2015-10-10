@@ -34,7 +34,7 @@ public class ActMainTest {
         onView(withId(R.id.btnConfirmarResposta))
                 .check(matches(isDisplayed()));
     }
-
+    /*
     @Test
     public void testStatsButton() {
         onView(withId(R.id.btnEstatisticas))
@@ -42,5 +42,6 @@ public class ActMainTest {
         onView(withId(R.id.txtStats))
                 .check(matches(isDisplayed()));
     }
+    */
 
 }

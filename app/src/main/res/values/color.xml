@@ -4,6 +4,7 @@
     <color name="colorAzulFraco">#3498DB</color>
     <color name="colorAzulEscuro">#2980B9</color>
     <color name="primary_dark">#184c6f</color>
+    <color name="pink">#FF4081</color>
 
     <!-- Basic colors -->
     <color name="colorWhite">#fff</color>

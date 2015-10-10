@@ -23,11 +23,19 @@
 
     <!-- ActEstatistica -->
     <string name="title_activity_act_estatistica">Minhas Estatísticas</string>
+    <string name="stats.num.erros">Número de erros:</string>
+    <string name="stats.num.acertos">Número de acertos:</string>
+    <string name="stats.num.pulos.resposta">Número de pulos:</string>
+    <string name="stats.num.usos.dica.bandeira">Número de usos dica bandeira:</string>
+    <string name="stats.num.usos.dica.descricao">Número de usos dica descrção:</string>
+    <string name="stats.num.usos.dica.letra">Número de usos dica letra:</string>
+    <string name="stats.maior.num.pontos">Maior número de pontos:</string>
+    <string name="stats.menor.num.pontos">Menor número de pontos:</string>
+
     <string name="label_estatisticas">Estatísticas</string>
     <string name="title_activity_act_opcoes">Opções</string>
     <string name="label_som_botoes">Ativar som dos botões</string>
-
-    <string name="pref_title_sounds">Sons</string>
+    <string name="pref_title_sounds">SONS</string>
     <string name="buttons">Botões</string>
     <string name="pref_summary_buttons">Emitir som ao clicar em um botão</string>
     <string name="background_music">Música de fundo</string>

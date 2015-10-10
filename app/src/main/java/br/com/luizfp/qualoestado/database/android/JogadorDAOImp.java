@@ -5,6 +5,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.luizfp.qualoestado.Constants;
 import br.com.luizfp.qualoestado.database.DBHelper;
 import br.com.luizfp.qualoestado.models.Jogador;
@@ -211,6 +214,13 @@ public class JogadorDAOImp implements JogadorDAO {
         stmt.execute();
 
         DBHelper.close(db, sqLiteDatabase, null, stmt);
+    }
+
+    @Override
+    public List getTodasEstatisticas() {
+        List<Integer> list = new ArrayList<>();
+
+        return null;
     }
 
     @Override
