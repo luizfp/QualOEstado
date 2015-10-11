@@ -57,7 +57,6 @@ public class ActMain extends BaseActivity {
         qualOEstadoApp = (QualOEstadoApp)getApplication();
         playBgMusic = qualOEstadoApp.isPlayBgMusic();
         playButtonSound = qualOEstadoApp.isPlayButtonSound();
-        Log.d(TAG, "playButtonSound is: " + String.valueOf(playButtonSound));
         CountAnimation.startCountAnimation(0, jogador.getPontos(), txtPontosJogadorMenu, 1000);
         if (playBgMusic)
             startService(BackgroundSoundService.class);

@@ -54,7 +54,7 @@ public class Gerenciador {
     /**
      * Esse método deve ser chamado toda vez que o estado exibido na tela mudar. Para que as dicas
      * possam ser recriadas com base no estado atual.
-     * @param estado
+     * @param estado O estado para o qual a dica deve ser criada
      */
     public void recriarDicas(Estado estado) {
         dicaBandeira = new DicaBandeira(estado, false);
@@ -160,22 +160,22 @@ public class Gerenciador {
 
 
     /**
-     * Chamado quando o jogador executa alguma ação que diminua seu número de pontos.
-     * @param jogador
+     * Chamado quando o jogador executa alguma ação que aumente seu número de pontos.
+     * @param jogador Objeto que contém os valores mais atuais de jogador
      */
     private void atualizarMaiorNumPontos(Jogador jogador) {
-        if (jogador.getMaiorNumPontos() > this.jogador.getMaiorNumPontos()) {
+        if (jogador.getPontos() > this.jogador.getMaiorNumPontos()) {
             this.jogador.setMaiorNumPontos(jogador.getPontos());
             jogadorDAOImp.atualizarMaiorNumPontos(jogador.getPontos());
         }
     }
 
     /**
-     * Chamado quando o jogador executa alguma ação que aumente seu número de pontos.
-     * @param jogador
+     * Chamado quando o jogador executa alguma ação que diminua seu número de pontos.
+     * @param jogador Objeto que contém os valores mais atuais de jogador
      */
     private void atualizarMenorNumPontos(Jogador jogador) {
-        if (jogador.getMenorNumPontos() < this.jogador.getMenorNumPontos()) {
+        if (jogador.getPontos() < this.jogador.getMenorNumPontos()) {
             this.jogador.setMenorNumPontos(jogador.getPontos());
             jogadorDAOImp.atualizarMenorNumPontos(jogador.getPontos());
         }

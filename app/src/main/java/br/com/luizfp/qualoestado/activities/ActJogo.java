@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -87,7 +88,7 @@ public class ActJogo extends BaseActivity {
         if (!(((QualOEstadoApp)getApplication()).isTrocaActivity()) &&
                 ((QualOEstadoApp)getApplication()).isPlayBgMusic())
             startService(BackgroundSoundService.class);
-        gerenciador = gerenciador.getInstance();
+        gerenciador = Gerenciador.getInstance();
         gerenciador.instanciarDAO(this);
         sharedPreferences = getPreferences(MODE_PRIVATE);
         if (sharedPreferences.contains("KEY_STRING")) {
