@@ -56,7 +56,7 @@ public class JogadorDAOImp implements JogadorDAO {
         stmt.bindLong(7, 0); // Número inicial de usos da dica letra
         stmt.bindLong(8, Constants.VALOR_INICIAL_PONTOS_JOGADOR); // Maior número de pontos já obtido
         stmt.bindLong(9, Constants.VALOR_INICIAL_PONTOS_JOGADOR); // Menor número de pontos já obtido
-        stmt.bindLong(10, 1); // App já usado. 1 == true, 0 == false
+        stmt.bindLong(10, 0); // App já usado. 1 == true, 0 == false
         stmt.execute();
         DBHelper.close(db, sqLiteDatabase, null, stmt);
         return getJogador();
@@ -202,21 +202,6 @@ public class JogadorDAOImp implements JogadorDAO {
     }
 
     @Override
-    public void atualizarAppJaUsado(boolean b) {
-        String atualizarQuery = "UPDATE JOGADOR SET " + COLUNA_APP_JA_USADO + " = ?";
-        AndroidDatabase db = new AndroidDatabase(context);
-        SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
-        SQLiteStatement stmt = sqLiteDatabase.compileStatement(atualizarQuery);
-        // Se b for true flag recebe 1. Será guardado como integer já que o SQLite não tem classe
-        // nativa para boolean.
-        int flag = (b) ? 1 : 0;
-        stmt.bindLong(1, flag);
-        stmt.execute();
-
-        DBHelper.close(db, sqLiteDatabase, null, stmt);
-    }
-
-    @Override
     public List getTodasEstatisticas() {
         List<Integer> list = new ArrayList<>();
 
@@ -237,4 +222,20 @@ public class JogadorDAOImp implements JogadorDAO {
         DBHelper.close(db, sqLiteDatabase, c, null);
         return (flag == 1);
     }
+
+    @Override
+    public void atualizarAppJaUsado(boolean b) {
+        String atualizarQuery = "UPDATE JOGADOR SET " + COLUNA_APP_JA_USADO + " = ?";
+        AndroidDatabase db = new AndroidDatabase(context);
+        SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
+        SQLiteStatement stmt = sqLiteDatabase.compileStatement(atualizarQuery);
+        // Se b for true flag recebe 1. Será guardado como integer já que o SQLite não tem classe
+        // nativa para boolean.
+        int flag = (b) ? 1 : 0;
+        stmt.bindLong(1, flag);
+        stmt.execute();
+
+        DBHelper.close(db, sqLiteDatabase, null, stmt);
+    }
+
 }

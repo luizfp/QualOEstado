@@ -180,4 +180,12 @@ public class Gerenciador {
             jogadorDAOImp.atualizarMenorNumPontos(jogador.getPontos());
         }
     }
+
+    public boolean appJaUsado() {
+        return jogadorDAOImp.appJaUsado();
+    }
+
+    public void atualizarAppJaUsado(boolean b) {
+        jogadorDAOImp.atualizarAppJaUsado(b);
+    }
 }

@@ -2,16 +2,21 @@ package br.com.luizfp.qualoestado.activities;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
@@ -37,9 +42,15 @@ import br.com.luizfp.qualoestado.util.DrawableUtils;
 import br.com.luizfp.qualoestado.util.ListUtils;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import tourguide.tourguide.Overlay;
+import tourguide.tourguide.Pointer;
+import tourguide.tourguide.Sequence;
+import tourguide.tourguide.ToolTip;
+import tourguide.tourguide.TourGuide;
 
 public class ActJogo extends BaseActivity {
 
+    private TourGuide mTutorialHandler;
     private Jogador jogador;
     private EditText edtResposta;
     private SubsamplingScaleImageView imgEstado;
@@ -52,6 +63,7 @@ public class ActJogo extends BaseActivity {
     private MediaPlayer mpButtonClick;
     private SharedPreferences sharedPreferences;
     boolean stopMusicService = true;
+    private Animation mEnterAnimation, mExitAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +92,82 @@ public class ActJogo extends BaseActivity {
             }
         });
 
+        gerenciador = Gerenciador.getInstance();
+        if (!gerenciador.appJaUsado()) {
+            playTutorialInSequence();
+            new Thread() {
+                @Override
+                public void run() {
+                    gerenciador.atualizarAppJaUsado(true);
+                }
+            }.start();
+        }
+    }
+
+    private void playTutorialInSequence() {
+         /* setup enter and exit animation */
+        mEnterAnimation = new AlphaAnimation(0f, 1f);
+        mEnterAnimation.setDuration(600);
+        mEnterAnimation.setFillAfter(true);
+
+        mExitAnimation = new AlphaAnimation(1f, 0f);
+        mExitAnimation.setDuration(600);
+        mExitAnimation.setFillAfter(true);
+
+        int colorOverlay = 0x50000000;
+
+        TourGuide bandeira = TourGuide.init(this).with(TourGuide.Technique.Click)
+                .setPointer(new Pointer()
+                        .setColor(Color.RED)
+                        .setGravity(Gravity.TOP))
+                .setToolTip(new ToolTip().setTitle("Dica Bandeira!")
+                        .setDescription("Exibe a bandeira do estado atual, essa " +
+                                "dica custa: " + Constants.CUSTO_DICA_BANDEIRA + " Pontos"))
+                .setOverlay(new Overlay().setBackgroundColor(colorOverlay))
+                .playLater(findViewById(R.id.imgBtnBandeiraEstado));
+
+        TourGuide descricao = TourGuide.init(this).with(TourGuide.Technique.Click)
+                .setPointer(new Pointer()
+                        .setColor(Color.YELLOW)
+                        .setGravity(Gravity.BOTTOM))
+                .setToolTip(new ToolTip().setTitle("Dica Descrição!")
+                        .setDescription("Exibe uma descrição do estado atual, essa " +
+                                "dica custa: " + Constants.CUSTO_DICA_DESCRICAO + " Pontos")
+                        .setGravity(Gravity.TOP))
+                .setOverlay(new Overlay().setBackgroundColor(colorOverlay)
+                        .setEnterAnimation(mEnterAnimation)
+                        .setExitAnimation(mExitAnimation))
+                .playLater(findViewById(R.id.imgBtnDescricaoEstado));
+
+        TourGuide letra = TourGuide.init(this).with(TourGuide.Technique.Click)
+                .setPointer(new Pointer()
+                        .setColor(Color.BLUE)
+                        .setGravity(Gravity.TOP))
+                .setToolTip(new ToolTip()
+                        .setTitle("Dica Letra!")
+                        .setDescription("Exibe a quantidade de letras e a letra inicial " +
+                                "do estado atual, essa dica custa: " + Constants.CUSTO_DICA_LETRA +
+                                " Pontos"))
+                .setOverlay(new Overlay().setBackgroundColor(colorOverlay))
+                .playLater(findViewById(R.id.imgBtnLetraEstado));
+
+        Sequence sequence = new Sequence.SequenceBuilder()
+                .add(bandeira, descricao, letra)
+                .setDefaultOverlay(new Overlay()
+                                .setEnterAnimation(mEnterAnimation)
+                                .setExitAnimation(mExitAnimation)
+                                .setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        mTutorialHandler.next();
+                                    }
+                                })
+                )
+                .setDefaultPointer(null)
+                .setContinueMethod(Sequence.ContinueMethod.OverlayListener)
+                .build();
+
+        mTutorialHandler = TourGuide.init(this).playInSequence(sequence);
     }
 
 

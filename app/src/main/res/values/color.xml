@@ -16,4 +16,6 @@
     <color name="colorWarningButton">#F1C40F</color>
     <color name="colorDangerButton">#E74C3C</color>
     <color name="colorInverseButton">#34495E</color>
+
+    <color name="tourGuidaYellow">#50FFFF00</color>
 </resources>
