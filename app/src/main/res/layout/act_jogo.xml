@@ -50,7 +50,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/ic_bandeira"
-                android:background="@drawable/button_background_selector" />
+                android:background="?attr/selectableItemBackgroundBorderless" />
 
             <ImageButton
                 android:onClick="getDicaDescricao"
@@ -59,7 +59,7 @@
                 android:id="@+id/imgBtnDescricaoEstado"
                 android:layout_weight="1"
                 android:src="@drawable/ic_info"
-                android:background="@drawable/button_background_selector" />
+                android:background="?attr/selectableItemBackgroundBorderless" />
 
             <ImageButton
                 android:onClick="getDicaLetra"
@@ -68,7 +68,7 @@
                 android:id="@+id/imgBtnLetraEstado"
                 android:layout_weight="1"
                 android:src="@drawable/ic_letras"
-                android:background="@drawable/button_background_selector" />
+                android:background="?attr/selectableItemBackgroundBorderless" />
 
         </LinearLayout>
 

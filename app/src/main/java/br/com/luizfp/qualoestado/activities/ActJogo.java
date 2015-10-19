@@ -117,9 +117,6 @@ public class ActJogo extends BaseActivity {
         int colorOverlay = 0x50000000;
 
         TourGuide bandeira = TourGuide.init(this).with(TourGuide.Technique.Click)
-                .setPointer(new Pointer()
-                        .setColor(Color.RED)
-                        .setGravity(Gravity.TOP))
                 .setToolTip(new ToolTip().setTitle("Dica Bandeira!")
                         .setDescription("Exibe a bandeira do estado atual, essa " +
                                 "dica custa: " + Constants.CUSTO_DICA_BANDEIRA + " Pontos"))
@@ -127,9 +124,6 @@ public class ActJogo extends BaseActivity {
                 .playLater(findViewById(R.id.imgBtnBandeiraEstado));
 
         TourGuide descricao = TourGuide.init(this).with(TourGuide.Technique.Click)
-                .setPointer(new Pointer()
-                        .setColor(Color.YELLOW)
-                        .setGravity(Gravity.BOTTOM))
                 .setToolTip(new ToolTip().setTitle("Dica Descrição!")
                         .setDescription("Exibe uma descrição do estado atual, essa " +
                                 "dica custa: " + Constants.CUSTO_DICA_DESCRICAO + " Pontos")
@@ -140,9 +134,6 @@ public class ActJogo extends BaseActivity {
                 .playLater(findViewById(R.id.imgBtnDescricaoEstado));
 
         TourGuide letra = TourGuide.init(this).with(TourGuide.Technique.Click)
-                .setPointer(new Pointer()
-                        .setColor(Color.BLUE)
-                        .setGravity(Gravity.TOP))
                 .setToolTip(new ToolTip()
                         .setTitle("Dica Letra!")
                         .setDescription("Exibe a quantidade de letras e a letra inicial " +

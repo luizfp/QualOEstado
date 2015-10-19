@@ -17,7 +17,8 @@
         <activity
             android:name="br.com.luizfp.qualoestado.activities.ActMain"
             android:label="@string/app_name"
-            android:theme="@style/NoActionBar.Main" >
+            android:theme="@style/NoActionBar.Main"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,15 +28,18 @@
         <activity
             android:name="br.com.luizfp.qualoestado.activities.ActJogo"
             android:label="@string/title_activity_act_jogo"
-            android:theme="@style/NoActionBar.Jogo">
+            android:theme="@style/NoActionBar.Jogo"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="br.com.luizfp.qualoestado.activities.ActEstatistica"
-            android:label="@string/title_activity_act_estatistica" >
+            android:label="@string/title_activity_act_estatistica"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="br.com.luizfp.qualoestado.activities.ActOpcoes"
-            android:label="@string/title_activity_act_opcoes" >
+            android:label="@string/title_activity_act_opcoes"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
