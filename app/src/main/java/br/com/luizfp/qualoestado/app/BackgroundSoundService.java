@@ -40,21 +40,21 @@ public class BackgroundSoundService extends Service {
         int resId;
         Log.d(TAG, "Prefs BG: " + PrefUtils.getInstance(this).getBgMusic());
         switch (PrefUtils.getInstance(this).getBgMusic()) {
-            case 0:
+            default:
                 resId = BgMusicUtils.getRawIdByName(MUSICA_1, this);
-                mediaPlayer = mediaPlayer.create(this, resId);
+                mediaPlayer = MediaPlayer.create(this, resId);
                 break;
             case 1:
                 resId = BgMusicUtils.getRawIdByName(MUSICA_2, this);
-                mediaPlayer = mediaPlayer.create(this, resId);
+                mediaPlayer = MediaPlayer.create(this, resId);
                 break;
             case 2:
                 resId = BgMusicUtils.getRawIdByName(MUSICA_3, this);
-                mediaPlayer = mediaPlayer.create(this, resId);
+                mediaPlayer = MediaPlayer.create(this, resId);
                 break;
             case 3:
                 resId = BgMusicUtils.getRawIdByName(MUSICA_4, this);
-                mediaPlayer = mediaPlayer.create(this, resId);
+                mediaPlayer = MediaPlayer.create(this, resId);
                 break;
         }
         mediaPlayer.setVolume(100, 100);
@@ -65,7 +65,7 @@ public class BackgroundSoundService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         mediaPlayer.start();
         Log.d(TAG, "Media Player Started");
-        if (mediaPlayer.isLooping() != true)
+        if (!mediaPlayer.isLooping())
             Log.d(TAG, "Problem in playing audio");
         return 1;
     }

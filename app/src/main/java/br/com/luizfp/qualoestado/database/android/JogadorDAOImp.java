@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.luizfp.qualoestado.Constants;
@@ -34,16 +33,16 @@ public class JogadorDAOImp implements JogadorDAO {
     public JogadorDAOImp() {
     }
 
-    public JogadorDAOImp(Context context) {
+    public JogadorDAOImp(final Context context) {
         this.context = context;
     }
 
     @Override
-    public Jogador inserirNovoJogador() {
-        String inserirJogador = "INSERT INTO JOGADOR (PONTOS, NUM_ACERTOS, NUM_ERROS," +
-                " NUM_PULOS_RESPOSTA, NUM_USOS_DICA_BANDEIRA, NUM_USOS_DICA_DESCRICAO," +
-                " NUM_USOS_DICA_LETRA, MAIOR_NUM_PONTOS, MENOR_NUM_PONTOS, APP_JA_USADO)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public final Jogador inserirNovoJogador() {
+        String inserirJogador = "INSERT INTO JOGADOR (PONTOS, NUM_ACERTOS, NUM_ERROS,"
+                + " NUM_PULOS_RESPOSTA, NUM_USOS_DICA_BANDEIRA, NUM_USOS_DICA_DESCRICAO,"
+                + " NUM_USOS_DICA_LETRA, MAIOR_NUM_PONTOS, MENOR_NUM_PONTOS, APP_JA_USADO)"
+                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         AndroidDatabase db = new AndroidDatabase(context);
         SQLiteDatabase sqLiteDatabase = db.getReadableDatabase();
         SQLiteStatement stmt = sqLiteDatabase.compileStatement(inserirJogador);
@@ -91,7 +90,7 @@ public class JogadorDAOImp implements JogadorDAO {
     }
 
     @Override
-    public void atualizarNumPontos(int numero) {
+    public final void atualizarNumPontos(int numero) {
         String atualizarQuery = "UPDATE JOGADOR SET " + COLUNA_PONTOS + " = ?";
         AndroidDatabase db = new AndroidDatabase(context);
         SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
@@ -103,7 +102,7 @@ public class JogadorDAOImp implements JogadorDAO {
     }
 
     @Override
-    public void atualizarNumAcertos(int numero) {
+    public final void atualizarNumAcertos(int numero) {
         String atualizarQuery = "UPDATE JOGADOR SET " + COLUNA_NUM_ACERTOS + " = ?";
         AndroidDatabase db = new AndroidDatabase(context);
         SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
@@ -118,7 +117,7 @@ public class JogadorDAOImp implements JogadorDAO {
     }
 
     @Override
-    public void atualizarNumErros(int numero) {
+    public final void atualizarNumErros(int numero) {
         String atualizarQuery = "UPDATE JOGADOR SET " + COLUNA_NUM_ERROS + " = ?";
         AndroidDatabase db = new AndroidDatabase(context);
         SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
@@ -130,7 +129,7 @@ public class JogadorDAOImp implements JogadorDAO {
     }
 
     @Override
-    public void atualizarNumPulosResposta(int numero) {
+    public final void atualizarNumPulosResposta(int numero) {
         String atualizarQuery = "UPDATE JOGADOR SET " + COLUNA_NUM_PULOS_RESPOSTA + " = ?";
         AndroidDatabase db = new AndroidDatabase(context);
         SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
@@ -142,7 +141,7 @@ public class JogadorDAOImp implements JogadorDAO {
     }
 
     @Override
-    public void atualizarNumUsosDicaBandeira(int numero) {
+    public final void atualizarNumUsosDicaBandeira(int numero) {
         String atualizarQuery = "UPDATE JOGADOR SET " + COLUNA_NUM_USOS_DICA_BANDEIRA + " = ?";
         AndroidDatabase db = new AndroidDatabase(context);
         SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
@@ -154,7 +153,7 @@ public class JogadorDAOImp implements JogadorDAO {
     }
 
     @Override
-    public void atualizarNumUsosDicaDescricao(int numero) {
+    public final void atualizarNumUsosDicaDescricao(int numero) {
         String atualizarQuery = "UPDATE JOGADOR SET " + COLUNA_NUM_USOS_DICA_DESCRICAO + " = ?";
         AndroidDatabase db = new AndroidDatabase(context);
         SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
@@ -166,7 +165,7 @@ public class JogadorDAOImp implements JogadorDAO {
     }
 
     @Override
-    public void atualizarNumUsosDicaLetra(int numero) {
+    public final void atualizarNumUsosDicaLetra(int numero) {
         String atualizarQuery = "UPDATE JOGADOR SET " + COLUNA_NUM_USOS_DICA_LETRA + " = ?";
         AndroidDatabase db = new AndroidDatabase(context);
         SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
@@ -178,7 +177,7 @@ public class JogadorDAOImp implements JogadorDAO {
     }
 
     @Override
-    public void atualizarMaiorNumPontos(int numero) {
+    public final void atualizarMaiorNumPontos(int numero) {
         String atualizarQuery = "UPDATE JOGADOR SET " + COLUNA_MAIOR_NUM_PONTOS + " = ?";
         AndroidDatabase db = new AndroidDatabase(context);
         SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
@@ -190,7 +189,7 @@ public class JogadorDAOImp implements JogadorDAO {
     }
 
     @Override
-    public void atualizarMenorNumPontos(int numero) {
+    public final void atualizarMenorNumPontos(int numero) {
         String atualizarQuery = "UPDATE JOGADOR SET " + COLUNA_MENOR_NUM_PONTOS + " = ?";
         AndroidDatabase db = new AndroidDatabase(context);
         SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
@@ -202,14 +201,12 @@ public class JogadorDAOImp implements JogadorDAO {
     }
 
     @Override
-    public List getTodasEstatisticas() {
-        List<Integer> list = new ArrayList<>();
-
+    public final List getTodasEstatisticas() {
         return null;
     }
 
     @Override
-    public boolean appJaUsado() {
+    public final boolean appJaUsado() {
         String selectQuery = "SELECT " + COLUNA_APP_JA_USADO + " FROM JOGADOR";
         AndroidDatabase db = new AndroidDatabase(context);
         SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
@@ -224,7 +221,7 @@ public class JogadorDAOImp implements JogadorDAO {
     }
 
     @Override
-    public void atualizarAppJaUsado(boolean b) {
+    public final void atualizarAppJaUsado(final boolean b) {
         String atualizarQuery = "UPDATE JOGADOR SET " + COLUNA_APP_JA_USADO + " = ?";
         AndroidDatabase db = new AndroidDatabase(context);
         SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();

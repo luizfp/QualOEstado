@@ -2,10 +2,8 @@ package br.com.luizfp.qualoestado.activities;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -16,7 +14,6 @@ import android.view.animation.Animation;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
@@ -43,7 +40,6 @@ import br.com.luizfp.qualoestado.util.ListUtils;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import tourguide.tourguide.Overlay;
-import tourguide.tourguide.Pointer;
 import tourguide.tourguide.Sequence;
 import tourguide.tourguide.ToolTip;
 import tourguide.tourguide.TourGuide;

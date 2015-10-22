@@ -14,7 +14,7 @@ import br.com.luizfp.qualoestado.models.Jogador;
 
 public class ActEstatistica extends BaseActivity {
 
-    boolean stopMusicService = true;
+    private boolean stopMusicService = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class ActEstatistica extends BaseActivity {
         setContentView(R.layout.act_estatistica);
         setupActionBar();
 
-        TextView txtStatsNumAcertos = (TextView)findViewById(R.id.txtStatsNumAcertos);
+        TextView txtStatsNumAcertos = (TextView) findViewById(R.id.txtStatsNumAcertos);
         TextView txtStatsNumErros = (TextView)findViewById(R.id.txtStatsNumErros);
         TextView txtStatsNumPulos = (TextView)findViewById(R.id.txtStatsNumPulos);
         TextView txtStatsNumUsosDicaBandeira = (TextView)findViewById(R.id.txtStatsNumUsosDicaBandeira);

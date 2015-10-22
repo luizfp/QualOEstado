@@ -5,6 +5,8 @@ package br.com.luizfp.qualoestado;
  */
 public class Constants {
 
+    private Constants(){}
+
     // ANDROID_DB
     public static final String DB_ANDROID_NAME = "JOGADOR";
 
