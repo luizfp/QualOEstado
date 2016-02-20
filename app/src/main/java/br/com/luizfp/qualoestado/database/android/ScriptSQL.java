@@ -5,7 +5,7 @@ package br.com.luizfp.qualoestado.database.android;
  */
 public class ScriptSQL {
 
-    public static String getCreateContato() {
+    public static String getCreateJogador() {
         StringBuilder sqlBuilder = new StringBuilder();
 
         sqlBuilder.append("CREATE TABLE IF NOT EXISTS JOGADOR ( ");

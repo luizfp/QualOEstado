@@ -19,7 +19,7 @@ public class AndroidDatabase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //responsável pela criação do banco de dados e da tabela
-        db.execSQL(ScriptSQL.getCreateContato());
+        db.execSQL(ScriptSQL.getCreateJogador());
 
     }
 
